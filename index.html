@@ -3,21 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Loja de Roupas</title>
+    <title>Sem Maldade | Streetwear</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Fashion Store</h1>
+
+    <nav class="navbar">
+        <div class="logo">SEM MALDADE</div>
+        <ul class="nav-links">
+            <li><a href="#">Nova Coleção</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>ESSENCE 2026</h1>
+            <p>O estilo que nasce nas ruas e se define na atitude.</p>
+            <a href="#colecao" class="btn-dourado">Ver Coleção</a>
+        </div>
     </header>
 
-    <main class="container">
-        <div class="produto">
-            <img src="img/camiseta.jpg" alt="Camiseta">
-            <h3>Camiseta Minimalista</h3>
-            <p>R$ 79,90</p>
-            <button>Comprar</button>
+    <section id="colecao" class="container">
+        <h2 class="titulo-secao">Nova Coleção</h2>
+        
+        <div class="grid-produtos">
+            
+            <div class="card-produto">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b721fa?w=600" alt="Produto 1">
+                    <span class="tag">Exclusivo</span>
+                </div>
+                <div class="info">
+                    <h3>Camiseta Oversized "Maldade Zero"</h3>
+                    <p class="preco">R$ 149,90</p>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Produto 2">
+                </div>
+                <div class="info">
+                    <h3>Moletom Box Logo Dourado</h3>
+                    <p class="preco">R$ 289,90</p>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1576566582149-134521bd2f97?w=600" alt="Produto 3">
+                </div>
+                <div class="info">
+                    <h3>Tee Sem Maldade Signature</h3>
+                    <p class="preco">R$ 129,90</p>
+                    <button class="btn-comprar">Comprar</button>
+                </div>
+            </div>
+
         </div>
-    </main>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SEM MALDADE. Streetwear Premium.</p>
+    </footer>
+
 </body>
 </html>
