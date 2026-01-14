@@ -169,4 +169,17 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
 .btn-primary:hover {
     background-color: white;
     transform: scale(1.05);
+} 
+.hero-content h1 {
+    font-size: 3.5rem; /* Aumentei um pouco para dar mais peso */
+    text-transform: uppercase; /* Deixa tudo em maiúsculo para impor respeito */
+    color: var(--dourado);
+    margin-bottom: 5px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-style: italic; /* O itálico dá um charme para a segunda parte da frase */
+    color: #ffffff;
+    opacity: 0.9;
 }
