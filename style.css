@@ -254,3 +254,31 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     background: #fff;
     color: #000;
 }
+.rodape {
+    background-color: #000;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #222; /* Linha sutil para separar do conteúdo */
+    margin-top: 50px;
+}
+
+.rodape-content p {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: var(--dourado);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
