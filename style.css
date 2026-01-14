@@ -111,3 +111,17 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     transform: scale(1.1); /* Aumenta um pouco ao passar o mouse */
     background-color: #20ba5a;
 }
+.logo-img {
+    height: 60px; /* Ajuste a altura como preferir */
+    width: auto;
+    display: block;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%; /* Diminuí um pouco o padding para o logo encaixar melhor */
+    background: var(--preto);
+    border-bottom: 1px solid var(--dourado); /* Uma linha dourada fina no topo fica bem streetwear */
+}
