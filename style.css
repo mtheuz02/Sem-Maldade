@@ -125,3 +125,48 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     background: var(--preto);
     border-bottom: 1px solid var(--dourado); /* Uma linha dourada fina no topo fica bem streetwear */
 }
+.hero {
+    height: 80vh; /* Ocupa 80% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    /* ABAIXO: O segredo do logo no fundo */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('img/logo.png'); 
+    background-size: 40%; /* Ajuste aqui se o logo ficar muito grande no fundo */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Efeito Parallax - o logo fica parado ao rolar */
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--dourado); /* Se você criou a variável dourado */
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.btn-primary {
+    padding: 15px 40px;
+    background-color: var(--dourado);
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: white;
+    transform: scale(1.05);
+}
