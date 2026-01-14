@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth;
+}
 /* Variáveis para facilitar a troca de cores depois */
 :root {
     --preto: #0a0a0a;
