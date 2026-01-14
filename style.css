@@ -282,3 +282,40 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
 .social-links a:hover {
     color: #fff;
 }
+/* Configurações apenas para celulares (telas até 768px) */
+@media (max-width: 768px) {
+    
+    /* Diminui o título principal do banner */
+    .hero-content h1 {
+        font-size: 2.2rem; /* Estava 3.5rem, agora cabe melhor */
+    }
+
+    /* Diminui a frase de baixo */
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    /* Ajusta o espaçamento do banner */
+    .hero {
+        padding: 0 20px;
+    }
+
+    /* Na vitrine, faz os produtos ficarem em 2 colunas para não ficarem gigantes */
+    .grid-produtos {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; /* Diminui o espaço entre eles */
+    }
+
+    /* Ajusta o tamanho das fotos e textos dos produtos no celular */
+    .img-placeholder {
+        height: 180px; /* Fotos menores para caberem lado a lado */
+    }
+
+    .card-produto h3 {
+        font-size: 1rem;
+    }
+
+    .preco {
+        font-size: 1.1rem;
+    }
+}
