@@ -86,3 +86,28 @@ body { font-family: 'Inter', sans-serif; background-color: var(--preto); color: 
 .btn-comprar:hover { background: var(--branco); color: var(--preto); }
 
 footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-size: 0.8rem; color: #555; }
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px; /* Distância do fundo */
+    right: 30px;  /* Distância da direita */
+    width: 60px;
+    height: 60px;
+    background-color: #25d366; /* Verde oficial do Zap */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-btn img {
+    width: 35px;
+    height: 35px;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1); /* Aumenta um pouco ao passar o mouse */
+    background-color: #20ba5a;
+}
