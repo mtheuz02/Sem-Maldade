@@ -3,222 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Maldade | Streetwear</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <title>Sem Maldade | Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            --preto: #0a0a0a;
-            --branco: #ffffff;
-            --dourado: #c5a059;
-            --cinza: #1a1a1a;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--preto); 
-            color: var(--branco); 
-            overflow-x: hidden;
-        }
-
-        .fonte-street {
-            font-family: 'Metal Mania', cursive !important;
-            text-transform: uppercase;
-        }
+        :root { --preto: #0a0a0a; --branco: #ffffff; --dourado: #c5a059; --cinza: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--preto); color: var(--branco); overflow-x: hidden; }
+        .fonte-street { font-family: 'Metal Mania', cursive !important; text-transform: uppercase; }
 
         /* LOGO 3D */
-        .logo-3d {
-            width: 100px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            animation: girar3d 5s linear infinite;
-            transform-style: preserve-3d;
-        }
+        .logo-3d { width: 80px; animation: girar3d 5s linear infinite; transform-style: preserve-3d; display: block; margin: 0 auto; }
+        @keyframes girar3d { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
-        @keyframes girar3d {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        /* CABEÇALHO */
-        .header-central {
-            padding: 20px 0;
-            background: var(--preto);
-            border-bottom: 1px solid #222;
-        }
-
-        /* HERO */
-        .hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/logo.png') center/20% no-repeat fixed;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
-            color: var(--dourado);
-            text-shadow: 3px 3px 0px #000;
-        }
-
-        /* SEÇÃO DE PRODUTOS */
-        .vitrine {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .titulo-secao {
-            font-size: 3rem;
-            color: var(--dourado);
-            margin-bottom: 40px;
-        }
-
-        .grid-produtos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .card-produto {
-            background: var(--cinza);
-            padding: 20px;
-            border: 1px solid #333;
-            transition: 0.3s;
-        }
-
-        .card-produto:hover { border-color: var(--dourado); transform: translateY(-5px); }
-
-        .img-placeholder {
-            width: 100%;
-            height: 300px;
-            background: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #444;
-        }
-
-        .card-produto h3 { margin-bottom: 10px; font-size: 1.2rem; }
-        .preco { color: var(--dourado); font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; }
-
-        .btn-comprar {
-            background: var(--dourado);
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* SOCIAIS */
-        .social-group {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 9999;
-        }
-
-        .social-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: 0.3s;
-        }
-
-        .social-btn img { width: 35px; height: 35px; } /* Removido o filtro branco */
+        header { padding: 15px 5%; background: var(--preto); border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; }
         
-        .instagram { background: #fff; } /* Fundo branco para o ícone colorido aparecer bem */
-        .whatsapp { background-color: #25d366; }
+        .cart-icon { cursor: pointer; position: relative; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--dourado); color: #000; font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
 
-        /* TELA DE BLOQUEIO */
-        #tela-bloqueio {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #ffffff; z-index: 10000; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
+        /* VITRINE */
+        .vitrine { padding: 60px 5%; text-align: center; }
+        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card-produto { background: var(--cinza); padding: 20px; border: 1px solid #333; transition: 0.3s; }
+        .img-placeholder { width: 100%; height: 300px; background: #222; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #444; }
 
-        #tela-bloqueio h2 { color: #000; margin: 20px 0; font-size: 2rem; }
-        .campo-senha { display: flex; flex-direction: column; gap: 10px; align-items: center; }
-        .campo-senha input { padding: 12px; border: 2px solid #000; text-align: center; width: 250px; }
-        .campo-senha button { background: #000; color: #fff; padding: 12px 40px; border: none; cursor: pointer; font-weight: bold; }
+        /* TAMANHOS */
+        .sizes { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
+        .size-btn { border: 1px solid var(--dourado); background: transparent; color: var(--dourado); padding: 5px 10px; cursor: pointer; transition: 0.3s; }
+        .size-btn.active { background: var(--dourado); color: #000; }
+
+        .btn-add { background: var(--dourado); color: #000; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+
+        /* CARRINHO LATERAL */
+        #cart-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: #111; z-index: 1001; transition: 0.4s; padding: 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        #cart-sidebar.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
+        .cart-items { flex-grow: 1; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .cart-footer { border-top: 1px solid #333; padding-top: 20px; }
+
+        /* FRETE */
+        .shipping-box { margin-top: 15px; display: flex; gap: 5px; }
+        .shipping-box input { background: #222; border: 1px solid #444; color: #fff; padding: 8px; flex-grow: 1; }
+        .shipping-box button { background: #333; color: #fff; border: none; padding: 8px; cursor: pointer; }
+
+        /* TELA BLOQUEIO */
+        #tela-bloqueio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     </style>
 </head>
 <body>
 
     <div id="tela-bloqueio">
-        <img src="img/logo.png" alt="Logo" class="logo-3d">
-        <h2 class="fonte-street">DROP INITIUM EM BREVE</h2>
-        <div class="campo-senha">
-            <input type="password" id="input-senha" placeholder="DIGITE A SENHA">
-            <button onclick="verificarSenha()">DESBLOQUEAR</button>
-        </div>
+        <img src="img/logo.png" class="logo-3d">
+        <h2 class="fonte-street" style="color:#000; margin:20px 0;">DROP INITIUM</h2>
+        <input type="password" id="input-senha" placeholder="SENHA" style="padding:10px; text-align:center; border:2px solid #000; margin-bottom:10px;">
+        <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:10px 30px; border:none; cursor:pointer; font-weight:bold;">ENTRAR</button>
     </div>
 
-    <header class="header-central">
-        <img src="img/logo.png" alt="Logo" class="logo-3d">
+    <header>
+        <div style="width: 40px;"></div>
+        <img src="img/logo.png" class="logo-3d" style="width: 60px;">
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="fonte-street">HONRE SUA ORIGEM</h1>
-            <p style="font-size: 1.2rem; letter-spacing: 3px;">VIVA SEM MALDADE.</p>
-        </div>
-    </section>
-
     <section class="vitrine">
-        <h2 class="fonte-street titulo-secao">Lançamentos</h2>
+        <h2 class="fonte-street" style="font-size: 3rem; color: var(--dourado); margin-bottom: 40px;">Coleção Initium</h2>
         <div class="grid-produtos">
+            
             <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Camiseta Classic Logo</h3>
+                <div class="img-placeholder">IMAGE 1</div>
+                <h3>Tee Classic Sem Maldade</h3>
                 <p class="preco">R$ 119,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
+                <div class="sizes" id="sizes-p1">
+                    <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
+                </div>
+                <button class="btn-add" onclick="addToCart('Tee Classic', 119.90, 'p1')">Adicionar ao Carrinho</button>
             </div>
+
             <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Moletom Origem</h3>
+                <div class="img-placeholder">IMAGE 2</div>
+                <h3>Moletom Street Logo</h3>
                 <p class="preco">R$ 249,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
+                <div class="sizes" id="sizes-p2">
+                    <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
+                </div>
+                <button class="btn-add" onclick="addToCart('Moletom Street', 249.90, 'p2')">Adicionar ao Carrinho</button>
             </div>
-            <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Boné Strapback</h3>
-                <p class="preco">R$ 89,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
-            </div>
+
         </div>
     </section>
 
-    <div class="social-group">
-        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn instagram">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-        </a>
-        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn whatsapp">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        </a>
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="fonte-street">Seu Carrinho</h2>
+            <span style="cursor:pointer; font-size:24px;" onclick="toggleCart()">×</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+            </div>
+        <div class="cart-footer">
+            <h3>Total: R$ <span id="cart-total">0.00</span></h3>
+            <div class="shipping-box">
+                <input type="text" id="cep" placeholder="00000-000">
+                <button onclick="calcFrete()">Calcular Frete</button>
+            </div>
+            <p id="frete-res" style="font-size: 12px; margin-top: 5px; color: var(--dourado);"></p>
+            <button class="btn-add" style="margin-top:20px;" onclick="finalizar()">Finalizar no WhatsApp</button>
+        </div>
     </div>
 
     <script>
+        let cart = [];
+        let selectedSizes = {};
+
         function verificarSenha() {
-            if (document.getElementById('input-senha').value.toUpperCase() === "SEMMALDADE2026") {
+            if(document.getElementById('input-senha').value.toUpperCase() === "SEMMALDADE2026") {
                 document.getElementById('tela-bloqueio').style.display = 'none';
-            } else { alert("ACESSO NEGADO."); }
+            } else { alert("Senha Incorreta"); }
+        }
+
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
+
+        function selectSize(btn, size) {
+            let parent = btn.parentElement;
+            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSizes[parent.id] = size;
+        }
+
+        function addToCart(name, price, id) {
+            if(!selectedSizes[id]) { alert("Selecione um tamanho!"); return; }
+            cart.push({ name, price, size: selectedSizes[id] });
+            updateCart();
+            toggleCart();
+        }
+
+        function updateCart() {
+            const itemsContainer = document.getElementById('cart-items');
+            itemsContainer.innerHTML = "";
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                itemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <p><b>${item.name}</b></p>
+                            <p><small>Tamanho: ${item.size}</small></p>
+                        </div>
+                        <p>R$ ${item.price.toFixed(2)}</p>
+                    </div>`;
+            });
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function calcFrete() {
+            const cep = document.getElementById('cep').value;
+            if(cep.length < 8) { alert("CEP Inválido"); return; }
+            document.getElementById('frete-res').innerText = "Frete Fixo: R$ 20,00 (Prazo: 5-8 dias)";
+        }
+
+        function finalizar() {
+            let msg = "Olá, gostaria de finalizar meu pedido Sem Maldade:%0A";
+            cart.forEach(i => msg += `- ${i.name} (Tam: ${i.size}) - R$ ${i.price}%0A`);
+            msg += `%0ATotal: R$ ${document.getElementById('cart-total').innerText}`;
+            window.open(`https://wa.me/5511977575021?text=${msg}`);
         }
     </script>
 </body>
