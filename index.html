@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sem Maldade | Streetwear</title>
-    <link rel="stylesheet" href="style.css?v=2.0">
+    
+    <link href="https://fonts.cdnfonts.com/css/pricedown" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=3.0">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/logo.png">
 </head>
@@ -88,35 +92,28 @@
     </a>
 
     <script>
-        // Contador Regressivo
         const dataDrop = new Date("Jul 01, 2026 00:00:00").getTime();
         const x = setInterval(function() {
             const agora = new Date().getTime();
             const distancia = dataDrop - agora;
-
             const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
             const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
             document.querySelector(".timer").innerHTML = dias + "D : " + horas + "H : " + minutos + "M : " + segundos + "S ";
-
             if (distancia < 0) {
                 clearInterval(x);
                 document.querySelector(".timer").innerHTML = "DROP LIBERADO";
             }
         }, 1000);
 
-        // Função de Senha
         function verificarSenha() {
             const senhaCorreta = "SEMMALDADE2026"; 
             const senhaDigitada = document.getElementById('input-senha').value;
-
             if (senhaDigitada === senhaCorreta) {
                 document.getElementById('tela-bloqueio').style.display = 'none';
-                alert("Bem-vindo ao Drop Initium.");
             } else {
-                alert("Senha incorreta. Tente novamente.");
+                alert("Senha incorreta.");
             }
         }
     </script>
