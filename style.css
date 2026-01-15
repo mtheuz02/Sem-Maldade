@@ -1,5 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/pricedown');
-
+@font-face {
+    font-family: 'Pricedown';
+    src: url('https://fonts.cdnfonts.com/s/14876/Pricedown.woff') format('woff');
+}
 :root {
     --preto: #0a0a0a;
     --branco: #ffffff;
