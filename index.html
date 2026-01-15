@@ -12,22 +12,9 @@
         body { background-color: var(--preto); color: var(--branco); overflow-x: hidden; }
         .fonte-street { font-family: 'Metal Mania', cursive !important; text-transform: uppercase; }
 
-        /* LOGOS MAIORES E GIRANDO */
-        .logo-3d { 
-            width: 110px; /* Aumentado no cabeçalho */
-            animation: girar3d 5s linear infinite; 
-            transform-style: preserve-3d; 
-            display: block; 
-            margin: 0 auto; 
-        }
-
-        .logo-bloqueio {
-            width: 220px; /* Aumentado na tela de bloqueio */
-            animation: girar3d 5s linear infinite;
-            transform-style: preserve-3d;
-            margin-bottom: 20px;
-        }
-
+        /* LOGO GIRANDO (AUMENTADO) */
+        .logo-3d { width: 110px; animation: girar3d 5s linear infinite; transform-style: preserve-3d; display: block; margin: 0 auto; }
+        .logo-bloqueio { width: 220px; animation: girar3d 5s linear infinite; transform-style: preserve-3d; margin-bottom: 20px; }
         @keyframes girar3d { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
         /* HEADER */
@@ -60,20 +47,19 @@
 
         .btn-add { background: var(--dourado); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
 
+        /* TELA BLOQUEIO */
+        #tela-bloqueio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
         /* CARRINHO SIDEBAR */
         #cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100%; background: #111; z-index: 1001; transition: 0.4s; padding: 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
         #cart-sidebar.open { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
         .cart-items { flex-grow: 1; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; align-items: center; }
-        .cart-footer { border-top: 1px solid #333; padding-top: 20px; }
-
-        /* TELA BLOQUEIO */
-        #tela-bloqueio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
         /* SOCIAIS */
         .social-group { position: fixed; bottom: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 998; }
-        .social-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .social-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
         .social-btn img { width: 32px; }
         .instagram { background: #fff; }
         .whatsapp { background: #25d366; }
@@ -85,7 +71,7 @@
         <img src="img/logo.png" class="logo-bloqueio">
         <h2 class="fonte-street" style="color:#000; margin-bottom: 20px; font-size: 3rem;">DROP INITIUM</h2>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
-            <input type="password" id="input-senha" placeholder="SENHA" style="padding:15px; text-align:center; border:2px solid #000; width: 280px; font-weight: bold; font-size: 1.1rem;">
+            <input type="password" id="input-senha" placeholder="SENHA" onkeydown="if(event.key === 'Enter') verificarSenha()" style="padding:15px; text-align:center; border:2px solid #000; width: 280px; font-weight: bold; font-size: 1.1rem;">
             <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:15px 60px; border:none; cursor:pointer; font-weight:900; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px;">DESBLOQUEAR</button>
         </div>
     </div>
@@ -113,4 +99,101 @@
                 <p class="preco">R$ 119,90</p>
                 <div class="sizes" id="sizes-p1">
                     <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
-                    <button class
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
+                </div>
+                <button class="btn-add" onclick="addToCart('Tee Classic', 119.90, 'p1')">Adicionar ao Carrinho</button>
+            </div>
+            <div class="card-produto">
+                <div class="img-placeholder">IMAGE 2</div>
+                <h3>Moletom Street Logo</h3>
+                <p class="preco">R$ 249,90</p>
+                <div class="sizes" id="sizes-p2">
+                    <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
+                </div>
+                <button class="btn-add" onclick="addToCart('Moletom Street', 249.90, 'p2')">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h2 class="fonte-street" style="color: var(--dourado);">Carrinho</h2>
+            <span style="cursor:pointer; font-size:30px;" onclick="toggleCart()">×</span>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer" style="border-top: 1px solid #333; padding-top: 20px;">
+            <h3 style="display: flex; justify-content: space-between;">Total: <span>R$ <span id="cart-total">0.00</span></span></h3>
+            <button class="btn-add" style="margin-top:20px;" onclick="finalizar()">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <div class="social-group">
+        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+        </a>
+        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn whatsapp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
+    </div>
+
+    <script>
+        let cart = [];
+        let selectedSizes = {};
+
+        function verificarSenha() {
+            const senhaDigitada = document.getElementById('input-senha').value.toUpperCase().trim();
+            if(senhaDigitada === "SEMMALDADE2026") {
+                document.getElementById('tela-bloqueio').style.display = 'none';
+                document.body.style.overflow = 'auto'; // Garante que o scroll volte ao normal
+            } else { 
+                alert("Senha Incorreta!"); 
+            }
+        }
+
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
+
+        function selectSize(btn, size) {
+            let parent = btn.parentElement;
+            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSizes[parent.id] = size;
+        }
+
+        function addToCart(name, price, id) {
+            if(!selectedSizes[id]) { alert("Selecione um tamanho!"); return; }
+            cart.push({ name, price, size: selectedSizes[id] });
+            updateCart();
+            toggleCart();
+        }
+
+        function updateCart() {
+            const itemsContainer = document.getElementById('cart-items');
+            itemsContainer.innerHTML = "";
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price;
+                itemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <div><p><b>${item.name}</b></p><p><small>Tam: ${item.size}</small></p></div>
+                        <p>R$ ${item.price.toFixed(2)}</p>
+                    </div>`;
+            });
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+            document.getElementById('cart-count').innerText = cart.length;
+        }
+
+        function finalizar() {
+            if(cart.length === 0) return;
+            let msg = "Olá! Quero finalizar meu pedido Sem Maldade:%0A%0A";
+            cart.forEach(i => msg += `• ${i.name} (${i.size}) - R$ ${i.price.toFixed(2)}%0A`);
+            msg += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/5511977575021?text=${msg}`);
+        }
+    </script>
+</body>
+</html>
