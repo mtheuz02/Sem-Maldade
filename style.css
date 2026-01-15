@@ -1,117 +1,39 @@
-/* 1. IMPORTAÇÃO BRUTA DA FONTE */
 @font-face {
     font-family: 'Pricedown';
     src: url('https://db.onlinewebfonts.com/t/223236e789856f616d250839c4d9b4b0.woff2') format('woff2');
-    font-display: swap;
 }
 
 :root {
     --preto: #0a0a0a;
     --branco: #ffffff;
     --dourado: #c5a059;
-    --cinza-escuro: #1a1a1a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background-color: var(--preto); color: var(--branco); line-height: 1.6; }
+body { font-family: 'Inter', sans-serif; background: var(--preto); color: var(--branco); }
 
-/* --- NAVEGAÇÃO --- */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background: var(--preto);
-    border-bottom: 1px solid var(--dourado);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-.logo-img { height: 60px; width: auto; }
-.nav-links li { list-style: none; }
-.nav-links a { text-decoration: none; color: var(--branco); font-weight: bold; }
-
-/* --- BANNER PRINCIPAL (GTA STYLE) --- */
-.hero {
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/logo.png') center/40% no-repeat fixed;
-}
-
-.hero-content h1 {
-    font-family: 'Pricedown', sans-serif !important;
-    font-size: clamp(3rem, 10vw, 6rem); /* Ajusta sozinho o tamanho */
-    text-transform: uppercase;
-    color: var(--dourado);
-    text-shadow: 4px 4px 0px #000;
-    letter-spacing: 2px;
-}
-
-.hero-content p {
-    font-size: 1.5rem;
-    font-style: italic;
-    margin-bottom: 30px;
-}
-
-.btn-primary {
-    padding: 15px 40px;
-    background-color: var(--dourado);
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-/* --- VITRINE --- */
-.vitrine { padding: 60px 5%; text-align: center; }
-.titulo-secao {
-    font-family: 'Pricedown', sans-serif !important;
-    color: var(--dourado);
-    font-size: 3.5rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-}
-
-.grid-produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.card-produto { background: #111; padding: 20px; border: 1px solid #222; }
-.img-placeholder { width: 100%; height: 300px; background: #222; display: flex; justify-content: center; align-items: center; margin-bottom: 15px; }
-
-/* --- TELA DE BLOQUEIO --- */
 #tela-bloqueio {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: #fff; z-index: 9999;
-    display: flex; justify-content: center; align-items: center; text-align: center;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff; z-index: 9999; display: flex; justify-content: center; align-items: center;
 }
 
 .bloqueio-content h2 {
     font-family: 'Pricedown', sans-serif !important;
-    font-size: 2.5rem;
-    color: #000;
-    margin-bottom: 20px;
+    font-size: 3rem; color: #000; text-align: center;
 }
 
 .logo-bloqueio { width: 150px; animation: girar 6s linear infinite; }
 @keyframes girar { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
-.timer { font-family: monospace; font-size: 1.2rem; color: #000; margin-bottom: 20px; }
-.campo-senha input { padding: 10px; border: 1px solid #000; text-align: center; }
-.campo-senha button { background: #000; color: #fff; padding: 10px 20px; border: none; cursor: pointer; }
-
-/* --- MOBILE --- */
-@media (max-width: 768px) {
-    .grid-produtos { grid-template-columns: repeat(2, 1fr); }
-    .img-placeholder { height: 180px; }
+.hero {
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/logo.png') center/30% no-repeat fixed;
 }
 
-.whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-.whatsapp-btn img { width: 35px; }
+.hero-content h1 {
+    font-family: 'Pricedown', sans-serif !important;
+    font-size: 5rem; color: var(--dourado); text-shadow: 4px 4px 0px #000;
+}
+
+.navbar { padding: 10px 5%; border-bottom: 1px solid var(--dourado); }
+.logo-img { height: 60px; }

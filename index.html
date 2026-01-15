@@ -4,39 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sem Maldade | Streetwear</title>
-    
-    <link href="https://fonts.cdnfonts.com/css/pricedown" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css?v=3.0">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://db.onlinewebfonts.com/c/223236e789856f616d250839c4d9b4b0?family=Pricedown" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 <body>
-
     <div id="tela-bloqueio">
         <div class="bloqueio-content">
-            <img src="img/logo.png" alt="Logo Sem Maldade" class="logo-bloqueio">
+            <img src="img/logo.png" alt="Logo" class="logo-bloqueio">
             <h2>DROP INITIUM EM BREVE</h2>
             <p class="timer">00D : 00H : 00M : 00S</p>
-            
             <div class="campo-senha">
                 <input type="password" id="input-senha" placeholder="INSIRA A SENHA">
                 <button onclick="verificarSenha()">ENTRAR</button>
             </div>
-            <p class="aviso">Acesso restrito para membros da comunidade.</p>
         </div>
     </div>
 
     <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="img/logo.png" alt="Logo Sem Maldade" class="logo-img">
-            </a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#produtos">Nova Coleção</a></li>
-        </ul>
+        <div class="logo"><img src="img/logo.png" class="logo-img"></div>
     </nav>
 
     <section class="hero">
@@ -47,74 +32,11 @@
         </div>
     </section>
 
-    <section id="produtos" class="vitrine">
-        <h2 class="titulo-secao">Lançamentos</h2>
-        <div class="grid-produtos">
-            <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Camiseta Classic Logo</h3>
-                <p class="preco">R$ 119,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
-            </div>
-            <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Moletom Origem</h3>
-                <p class="preco">R$ 249,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
-            </div>
-            <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Boné Strapback</h3>
-                <p class="preco">R$ 89,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
-            </div>
-            <div class="card-produto">
-                <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3>Camiseta Oversized</h3>
-                <p class="preco">R$ 139,90</p>
-                <button class="btn-comprar">Ver Detalhes</button>
-            </div>
-        </div>
-    </section>
-
-    <footer class="rodape">
-        <div class="rodape-content">
-            <p>&copy; 2026 Sem Maldade — Viva o autêntico.</p>
-            <div class="social-links">
-                <a href="https://instagram.com/sem.maldade_________" target="_blank">Instagram</a>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/5511977575021?text=Olá! Gostaria de saber mais sobre a coleção Sem Maldade." 
-       class="whatsapp-btn" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
     <script>
-        const dataDrop = new Date("Jul 01, 2026 00:00:00").getTime();
-        const x = setInterval(function() {
-            const agora = new Date().getTime();
-            const distancia = dataDrop - agora;
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-            document.querySelector(".timer").innerHTML = dias + "D : " + horas + "H : " + minutos + "M : " + segundos + "S ";
-            if (distancia < 0) {
-                clearInterval(x);
-                document.querySelector(".timer").innerHTML = "DROP LIBERADO";
-            }
-        }, 1000);
-
         function verificarSenha() {
-            const senhaCorreta = "SEMMALDADE2026"; 
-            const senhaDigitada = document.getElementById('input-senha').value;
-            if (senhaDigitada === senhaCorreta) {
+            if (document.getElementById('input-senha').value === "SEMMALDADE2026") {
                 document.getElementById('tela-bloqueio').style.display = 'none';
-            } else {
-                alert("Senha incorreta.");
-            }
+            } else { alert("Senha incorreta."); }
         }
     </script>
 </body>
