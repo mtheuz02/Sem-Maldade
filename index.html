@@ -4,39 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sem Maldade | Streetwear</title>
-    <link href="https://db.onlinewebfonts.com/c/223236e789856f616d250839c4d9b4b0?family=Pricedown" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --preto: #0a0a0a;
+            --branco: #ffffff;
+            --dourado: #c5a059;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--preto); 
+            color: var(--branco); 
+            overflow-x: hidden;
+        }
+
+        /* FONTE STREETWEAR AGRESSIVA */
+        .fonte-street {
+            font-family: 'Metal Mania', cursive !important;
+            text-transform: uppercase;
+        }
+
+        /* LOGO 3D GIRANDO */
+        .logo-3d {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            animation: girar3d 5s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes girar3d {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* CABEÇALHO CENTRALIZADO */
+        .header-central {
+            padding: 20px 0;
+            background: var(--preto);
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* BANNER PRINCIPAL */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/logo.png') center/20% no-repeat fixed;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--dourado);
+            text-shadow: 4px 4px 0px #000;
+        }
+
+        /* BOTÕES SOCIAIS (CANTO INFERIOR DIREITO) */
+        .social-group {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9999;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        .social-btn img { width: 35px; height: 35px; filter: brightness(0) invert(1); }
+        .social-btn:hover { transform: scale(1.1); }
+        
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .whatsapp { background-color: #25d366; }
+
+        /* TELA DE BLOQUEIO */
+        #tela-bloqueio {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; z-index: 10000; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        #tela-bloqueio h2 {
+            color: #000;
+            margin: 20px 0;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .campo-senha { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+        .campo-senha input { 
+            padding: 12px; border: 2px solid #000; text-align: center; 
+            font-weight: bold; font-size: 1rem; width: 250px;
+        }
+        .campo-senha button { 
+            background: #000; color: #fff; padding: 12px 40px; 
+            border: none; cursor: pointer; font-weight: bold; text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
+
     <div id="tela-bloqueio">
-        <div class="bloqueio-content">
-            <img src="img/logo.png" alt="Logo" class="logo-bloqueio">
-            <h2>DROP INITIUM EM BREVE</h2>
-            <p class="timer">00D : 00H : 00M : 00S</p>
-            <div class="campo-senha">
-                <input type="password" id="input-senha" placeholder="INSIRA A SENHA">
-                <button onclick="verificarSenha()">ENTRAR</button>
-            </div>
+        <img src="img/logo.png" alt="Logo" class="logo-3d">
+        <h2 class="fonte-street">DROP INITIUM EM BREVE</h2>
+        <div class="campo-senha">
+            <input type="password" id="input-senha" placeholder="DIGITE A SENHA">
+            <button onclick="verificarSenha()">DESBLOQUEAR</button>
         </div>
     </div>
 
-    <nav class="navbar">
-        <div class="logo"><img src="img/logo.png" class="logo-img"></div>
-    </nav>
+    <header class="header-central">
+        <img src="img/logo.png" alt="Logo" class="logo-3d">
+    </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>HONRE SUA ORIGEM</h1>
-            <p>Viva Sem Maldade.</p>
-            <a href="#produtos" class="btn-primary">VER PRODUTOS</a>
+            <h1 class="fonte-street">HONRE SUA ORIGEM</h1>
+            <p style="font-size: 1.5rem; letter-spacing: 5px; margin-top: 10px;">VIVA SEM MALDADE.</p>
         </div>
     </section>
 
+    <div class="social-group">
+        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn instagram">
+            <img src="https://www.svgrepo.com/show/303145/instagram-2-1-logo.svg" alt="Instagram">
+        </a>
+        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn whatsapp">
+            <img src="https://www.svgrepo.com/show/303160/whatsapp-logo.svg" alt="WhatsApp">
+        </a>
+    </div>
+
     <script>
         function verificarSenha() {
-            if (document.getElementById('input-senha').value === "SEMMALDADE2026") {
+            const senha = document.getElementById('input-senha').value.toUpperCase();
+            if (senha === "SEMMALDADE2026") {
                 document.getElementById('tela-bloqueio').style.display = 'none';
-            } else { alert("Senha incorreta."); }
+            } else { 
+                alert("ACESSO NEGADO."); 
+            }
         }
     </script>
 </body>
