@@ -1,161 +1,55 @@
 @import url('https://fonts.cdnfonts.com/css/pricedown');
-html {
-    scroll-behavior: smooth;
-}
-/* Variáveis para facilitar a troca de cores depois */
+
 :root {
     --preto: #0a0a0a;
     --branco: #ffffff;
-    --dourado: #c5a059; /* Tom de ouro sofisticado */
+    --dourado: #c5a059;
     --cinza-escuro: #1a1a1a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background-color: var(--preto); color: var(--branco); line-height: 1.6; }
 
-/* Menu */
+/* --- NAVEGAÇÃO --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
+    padding: 10px 5%;
     background: var(--preto);
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid var(--dourado);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-.logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 4px; color: var(--dourado); }
+.logo-img { height: 60px; width: auto; display: block; }
 .nav-links li { list-style: none; }
 .nav-links a { text-decoration: none; color: var(--branco); font-weight: bold; border-bottom: 2px solid var(--dourado); padding-bottom: 5px; }
 
-/* Banner Hero */
+/* --- BANNER HERO --- */
 .hero {
-    height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.hero h1 { font-size: 4rem; letter-spacing: 10px; margin-bottom: 10px; }
-.btn-dourado {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 15px 40px;
-    background: var(--dourado);
-    color: var(--preto);
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 2px;
-    transition: 0.3s;
-}
-.btn-dourado:hover { background: var(--branco); }
-
-/* Grid de Produtos */
-.container { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-.titulo-secao { text-align: center; font-size: 2rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 3px; }
-
-.grid-produtos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-/* Card Individual */
-.card-produto { background: var(--cinza-escuro); border-radius: 4px; overflow: hidden; transition: 0.4s; border: 1px solid #222; }
-.card-produto:hover { border-color: var(--dourado); transform: translateY(-5px); }
-
-.img-container { position: relative; height: 350px; overflow: hidden; }
-.img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.card-produto:hover img { transform: scale(1.1); }
-
-.tag { position: absolute; top: 10px; left: 10px; background: var(--dourado); color: var(--preto); padding: 5px 12px; font-size: 0.7rem; font-weight: bold; }
-
-.info { padding: 25px; }
-.info h3 { font-size: 1rem; margin-bottom: 10px; color: #ccc; }
-.preco { font-size: 1.2rem; font-weight: bold; color: var(--dourado); margin-bottom: 20px; }
-
-.btn-comprar {
-    width: 100%;
-    padding: 12px;
-    background: transparent;
-    color: var(--branco);
-    border: 1px solid var(--branco);
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.btn-comprar:hover { background: var(--branco); color: var(--preto); }
-
-footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-size: 0.8rem; color: #555; }
-.whatsapp-btn {
-    position: fixed;
-    bottom: 30px; /* Distância do fundo */
-    right: 30px;  /* Distância da direita */
-    width: 60px;
-    height: 60px;
-    background-color: #25d366; /* Verde oficial do Zap */
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: transform 0.3s ease;
-}
-
-.whatsapp-btn img {
-    width: 35px;
-    height: 35px;
-}
-
-.whatsapp-btn:hover {
-    transform: scale(1.1); /* Aumenta um pouco ao passar o mouse */
-    background-color: #20ba5a;
-}
-.logo-img {
-    height: 60px; /* Ajuste a altura como preferir */
-    width: auto;
-    display: block;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%; /* Diminuí um pouco o padding para o logo encaixar melhor */
-    background: var(--preto);
-    border-bottom: 1px solid var(--dourado); /* Uma linha dourada fina no topo fica bem streetwear */
-}
-.hero {
-    height: 80vh; /* Ocupa 80% da altura da tela */
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
-    /* ABAIXO: O segredo do logo no fundo */
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('img/logo.png'); 
-    background-size: 40%; /* Ajuste aqui se o logo ficar muito grande no fundo */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/logo.png'); 
+    background-size: 40%;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Efeito Parallax - o logo fica parado ao rolar */
-    color: white;
+    background-attachment: fixed;
 }
 
-/* --- ESTILO DOS TÍTULOS (ESTILO GTA) --- */
-
 .hero-content h1 {
-    font-family: 'Pricedown', sans-serif; /* Fonte do GTA */
-    font-size: 5rem; /* Aumentado para dar impacto */
+    font-family: 'Pricedown', sans-serif !important;
+    font-size: 5rem;
     text-transform: uppercase;
     color: var(--dourado);
     margin-bottom: 10px;
     letter-spacing: 3px;
-    text-shadow: 4px 4px 0px #000; /* Contorno preto clássico */
+    text-shadow: 4px 4px 0px #000;
 }
 
 .hero-content p {
@@ -172,24 +66,15 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     color: black;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 2px; /* Bordas mais secas/retas ficam mais agressivas */
+    border-radius: 2px;
     transition: 0.3s;
     display: inline-block;
 }
 
-.btn-primary:hover {
-    background-color: white;
-    transform: scale(1.05);
-}
-
-.vitrine {
-    padding: 60px 5%;
-    background-color: #000;
-    text-align: center;
-}
-
+/* --- VITRINE --- */
+.vitrine { padding: 60px 5%; background-color: #000; text-align: center; }
 .titulo-secao {
-    font-family: 'Pricedown', sans-serif; /* Fonte do GTA */
+    font-family: 'Pricedown', sans-serif !important;
     color: var(--dourado);
     font-size: 3.5rem;
     margin-bottom: 40px;
@@ -203,147 +88,33 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     gap: 30px;
 }
 
-.card-produto {
-    background: #111;
-    padding: 20px;
-    border: 1px solid #222;
-    transition: 0.3s;
-}
+.card-produto { background: #111; padding: 20px; border: 1px solid #222; transition: 0.3s; text-align: center; }
+.card-produto:hover { border-color: var(--dourado); }
+.img-placeholder { width: 100%; height: 300px; background-color: #222; display: flex; justify-content: center; align-items: center; color: #444; margin-bottom: 15px; }
+.preco { color: var(--dourado); font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; }
+.btn-comprar { background: transparent; color: #fff; border: 1px solid #fff; padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+.btn-comprar:hover { background: #fff; color: #000; }
 
-.card-produto:hover {
-    border-color: var(--dourado);
-}
-
-.img-placeholder {
-    width: 100%;
-    height: 300px;
-    background-color: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #444;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.card-produto h3 {
-    color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.preco {
-    color: var(--dourado);
-    font-weight: bold;
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-
-.btn-comprar {
-    background: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-comprar:hover {
-    background: #fff;
-    color: #000;
-}
-.rodape {
-    background-color: #000;
-    color: #fff;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 1px solid #222; /* Linha sutil para separar do conteúdo */
-    margin-top: 50px;
-}
-
-.rodape-content p {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    opacity: 0.7;
-    margin-bottom: 15px;
-}
-
-.social-links a {
-    color: var(--dourado);
-    text-decoration: none;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.social-links a:hover {
-    color: #fff;
-}
-/* Configurações apenas para celulares (telas até 768px) */
-@media (max-width: 768px) {
-    
-    /* Diminui o título principal do banner */
-    .hero-content h1 {
-        font-size: 2.2rem; /* Estava 3.5rem, agora cabe melhor */
-    }
-
-    /* Diminui a frase de baixo */
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
-    /* Ajusta o espaçamento do banner */
-    .hero {
-        padding: 0 20px;
-    }
-
-    /* Na vitrine, faz os produtos ficarem em 2 colunas para não ficarem gigantes */
-    .grid-produtos {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px; /* Diminui o espaço entre eles */
-    }
-
-    /* Ajusta o tamanho das fotos e textos dos produtos no celular */
-    .img-placeholder {
-        height: 180px; /* Fotos menores para caberem lado a lado */
-    }
-
-    .card-produto h3 {
-        font-size: 1rem;
-    }
-
-    .preco {
-        font-size: 1.1rem;
-    }
-}
-/* --- TELA DE BLOQUEIO ESTILO ODIUM --- */
+/* --- TELA DE BLOQUEIO --- */
 #tela-bloqueio {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-color: #ffffff; 
     z-index: 9999; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Adiciona profundidade para o giro 3D do logo */
+    display: flex; justify-content: center; align-items: center; text-align: center;
     perspective: 1000px; 
 }
 
-.bloqueio-content {
-    max-width: 400px;
-    padding: 20px;
+.bloqueio-content h2 {
+    font-family: 'Pricedown', sans-serif !important;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: #000;
 }
 
-/* --- LOGO GIRANDO EM 3D --- */
 .logo-bloqueio {
-    width: 150px;
-    margin-bottom: 20px;
-    /* Animação de giro: 6 segundos, infinita e constante */
+    width: 150px; margin-bottom: 20px;
     animation: girar3d 6s linear infinite;
     transform-style: preserve-3d;
 }
@@ -353,61 +124,19 @@ footer { text-align: center; padding: 50px; border-top: 1px solid #222; font-siz
     to { transform: rotateY(360deg); }
 }
 
-/* --- ESTILO DOS TEXTOS E CAMPOS --- */
-.bloqueio-content h2 {
-    font-size: 1rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #000;
-    text-transform: uppercase;
+.timer { font-family: 'Courier New', monospace; font-size: 1.2rem; margin-bottom: 30px; font-weight: bold; color: #000; }
+.campo-senha input { border: 1px solid #000; padding: 12px; width: 180px; text-align: center; outline: none; }
+.campo-senha button { background: #000; color: #fff; border: none; padding: 0 20px; cursor: pointer; font-weight: bold; }
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.8rem; }
+    .titulo-secao { font-size: 2.2rem; }
+    .grid-produtos { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .img-placeholder { height: 180px; }
 }
 
-.timer {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    font-weight: bold;
-    color: #000;
-}
-
-.campo-senha {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.campo-senha input {
-    border: 1px solid #000;
-    padding: 12px;
-    width: 180px;
-    text-align: center;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    outline: none;
-    background: transparent;
-}
-
-.campo-senha button {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 0 20px;
-    cursor: pointer;
-    font-size: 0.7rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s;
-}
-
-.campo-senha button:hover {
-    background: #333;
-}
-
-.aviso {
-    margin-top: 25px;
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    opacity: 0.5;
-    letter-spacing: 1px;
-}
+/* --- WHATSAPP & FOOTER --- */
+.whatsapp-btn { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #25d366; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.whatsapp-btn img { width: 35px; }
+.rodape { background-color: #000; color: #fff; padding: 40px; text-align: center; border-top: 1px solid #222; }
