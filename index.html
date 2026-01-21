@@ -3,144 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sem Maldade | Store</title>
+    <title>Sem Maldade | Official Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        :root { --preto: #0a0a0a; --branco: #ffffff; --dourado: #c5a059; --cinza: #1a1a1a; }
+        :root { 
+            --preto: #0a0a0a; 
+            --branco: #ffffff; 
+            --dourado: #c5a059; 
+            --cinza: #1a1a1a; 
+            --insta: #e1306c; 
+            --whats: #25d366; 
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--preto); color: var(--branco); overflow: hidden; } /* Bloqueia scroll antes da senha */
+        body { background-color: var(--preto); color: var(--branco); overflow: hidden; }
         .fonte-street { font-family: 'Metal Mania', cursive !important; text-transform: uppercase; }
 
-        /* LOGOS MAIORES E GIRANDO */
+        /* LOGOS E ANIMAÇÕES */
         .logo-3d { width: 110px; animation: girar3d 5s linear infinite; transform-style: preserve-3d; display: block; margin: 0 auto; }
         .logo-bloqueio { width: 220px; animation: girar3d 5s linear infinite; transform-style: preserve-3d; margin-bottom: 20px; }
         @keyframes girar3d { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
         /* TELA BLOQUEIO */
-        #tela-bloqueio { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #tela-bloqueio { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #fff; z-index: 10000; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; 
+        }
 
         /* HEADER */
-        header { padding: 20px 5%; background: var(--preto); border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 999; }
-        .cart-icon { cursor: pointer; position: relative; font-size: 28px; }
-        .cart-count { position: absolute; top: -5px; right: -10px; background: var(--dourado); color: #000; font-size: 12px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
-
-        /* BANNER */
-        .hero {
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/logo.png') center/20% no-repeat fixed;
-            border-bottom: 1px solid var(--dourado);
+        header { 
+            padding: 20px 5%; background: var(--preto); border-bottom: 1px solid #222; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 999; 
         }
-        .hero h1 { font-size: clamp(3.5rem, 12vw, 6.5rem); color: var(--dourado); text-shadow: 4px 4px 0px #000; }
+        .cart-icon { cursor: pointer; position: relative; font-size: 28px; transition: 0.3s; }
+        .cart-icon:hover { color: var(--dourado); }
+        .cart-count { 
+            position: absolute; top: -5px; right: -10px; background: var(--dourado); 
+            color: #000; font-size: 12px; width: 22px; height: 22px; 
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; 
+        }
+
+        /* HERO BANNER */
+        .hero {
+            height: 65vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('img/logo.png') center/15% no-repeat fixed;
+            border-bottom: 2px solid var(--dourado);
+        }
+        .hero h1 { font-size: clamp(3.5rem, 12vw, 7rem); color: var(--dourado); text-shadow: 5px 5px 0px #000; }
 
         /* VITRINE */
-        .vitrine { padding: 60px 5%; text-align: center; }
-        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card-produto { background: var(--cinza); padding: 20px; border: 1px solid #333; transition: 0.3s; }
-        .img-placeholder { width: 100%; height: 300px; background: #222; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #444; font-weight: bold; }
+        .vitrine { padding: 80px 5%; text-align: center; background: #0e0e0e; }
+        .grid-produtos { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 40px; max-width: 1200px; margin: 0 auto;
+        }
+        .card-produto { 
+            background: var(--cinza); padding: 25px; border: 1px solid #333; 
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .card-produto:hover { border-color: var(--dourado); transform: translateY(-10px); }
+        .img-placeholder { 
+            width: 100%; height: 350px; background: #252525; margin-bottom: 20px; 
+            display: flex; align-items: center; justify-content: center; 
+            color: #444; font-weight: 900; letter-spacing: 2px;
+        }
 
         /* TAMANHOS */
-        .sizes { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
-        .size-btn { border: 1px solid var(--dourado); background: transparent; color: var(--dourado); padding: 5px 12px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .size-btn.active { background: var(--dourado); color: #000; }
+        .sizes { display: flex; justify-content: center; gap: 12px; margin: 20px 0; }
+        .size-btn { 
+            border: 2px solid #444; background: transparent; color: #fff; 
+            width: 45px; height: 45px; cursor: pointer; font-weight: bold; 
+            transition: 0.3s; display: flex; align-items: center; justify-content: center;
+        }
+        .size-btn:hover { border-color: var(--dourado); color: var(--dourado); }
+        .size-btn.active { background: var(--dourado); color: #000; border-color: var(--dourado); }
 
-        .btn-add { background: var(--dourado); color: #000; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        /* BOTÕES */
+        .btn-add { 
+            background: var(--dourado); color: #000; border: none; padding: 18px; 
+            width: 100%; font-weight: 900; cursor: pointer; text-transform: uppercase; 
+            transition: 0.3s; letter-spacing: 1px;
+        }
+        .btn-add:hover { background: #fff; }
 
         /* CARRINHO SIDEBAR */
-        #cart-sidebar { position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100%; background: #111; z-index: 1001; transition: 0.4s; padding: 30px; box-shadow: -5px 0 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        #cart-sidebar { 
+            position: fixed; top: 0; right: -450px; width: 100%; max-width: 450px; 
+            height: 100%; background: #111; z-index: 1001; transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0); 
+            padding: 40px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.8); display: flex; flex-direction: column; 
+        }
         #cart-sidebar.open { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; }
-        .cart-items { flex-grow: 1; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; align-items: center; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--dourado); padding-bottom: 20px; margin-bottom: 30px; }
+        .cart-items { flex-grow: 1; overflow-y: auto; margin-bottom: 20px; }
+        .cart-item { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #222; }
 
-        /* SOCIAIS */
-        .social-group { position: fixed; bottom: 20px; left: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 998; }
-        .social-btn { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .social-btn img { width: 32px; }
-        .instagram { background: #fff; }
-        .whatsapp { background: #25d366; }
+        /* FRETE */
+        .shipping-area { background: #1a1a1a; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .shipping-input-group { display: flex; gap: 10px; margin-top: 10px; }
+        .shipping-input-group input { 
+            background: #222; border: 1px solid #444; color: #fff; 
+            padding: 10px; flex: 1; outline: none; 
+        }
+        .shipping-input-group button { background: #333; color: #fff; border: none; padding: 0 15px; cursor: pointer; }
+
+        /* SOCIAL FIXO */
+        .social-group { position: fixed; bottom: 30px; left: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 998; }
+        .social-btn { 
+            width: 60px; height: 60px; border-radius: 50%; display: flex; 
+            justify-content: center; align-items: center; transition: 0.3s; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
+        }
+        .social-btn:hover { transform: scale(1.1); }
+        .social-btn img { width: 35px; }
     </style>
 </head>
 <body>
 
     <div id="tela-bloqueio">
         <img src="img/logo.png" class="logo-bloqueio">
-        <h2 class="fonte-street" style="color:#000; margin-bottom: 20px; font-size: 3rem;">DROP INITIUM</h2>
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
-            <input type="password" id="input-senha" placeholder="SENHA" onkeypress="if(event.key === 'Enter') verificarSenha()" style="padding:15px; text-align:center; border:2px solid #000; width: 280px; font-weight: bold; font-size: 1.1rem; outline: none;">
-            <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:15px 60px; border:none; cursor:pointer; font-weight:900; text-transform: uppercase; font-size: 1rem; letter-spacing: 2px;">DESBLOQUEAR</button>
+        <h2 class="fonte-street" style="color:#000; margin-bottom: 20px; font-size: 3.5rem;">DROP INITIUM</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+            <input type="password" id="input-senha" placeholder="SENHA DE ACESSO" onkeypress="if(event.key === 'Enter') verificarSenha()" style="padding:18px; text-align:center; border:3px solid #000; width: 300px; font-weight: 900; font-size: 1.2rem; outline: none; text-transform: uppercase;">
+            <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:18px 80px; border:none; cursor:pointer; font-weight:900; text-transform: uppercase; letter-spacing: 3px;">ENTRAR NO DROP</button>
         </div>
     </div>
 
-    <div id="loja-completa">
-        <header>
-            <div style="width: 50px;"></div>
-            <img src="img/logo.png" class="logo-3d">
-            <div class="cart-icon" onclick="toggleCart()">
-                🛒 <span class="cart-count" id="cart-count">0</span>
-            </div>
-        </header>
+    <header>
+        <div style="width: 50px;"></div>
+        <img src="img/logo.png" class="logo-3d">
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
 
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="fonte-street">VIVA SEM MALDADE</h1>
-            </div>
-        </section>
+    <section class="hero">
+        <h1 class="fonte-street">VIVA SEM MALDADE</h1>
+    </section>
 
-        <section class="vitrine">
-            <h2 class="fonte-street" style="font-size: 3.5rem; color: var(--dourado); margin-bottom: 50px;">Lançamentos</h2>
-            <div class="grid-produtos">
-                <div class="card-produto">
-                    <div class="img-placeholder">FOTO EM BREVE</div>
-                    <h3>Tee Classic Sem Maldade</h3>
-                    <p class="preco">R$ 119,90</p>
-                    <div class="sizes" id="sizes-p1">
-                        <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
-                        <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
-                        <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
-                        <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
-                    </div>
-                    <button class="btn-add" onclick="addToCart('Tee Classic', 119.90, 'p1')">Adicionar ao Carrinho</button>
+    <section class="vitrine">
+        <h2 class="fonte-street" style="font-size: 4rem; color: var(--dourado); margin-bottom: 60px; letter-spacing: 5px;">Coleção 001</h2>
+        
+        <div class="grid-produtos">
+            <div class="card-produto">
+                <div class="img-placeholder">FOTO EM BREVE</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Tee Classic Sem Maldade</h3>
+                <p style="color: var(--dourado); font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;">R$ 119,90</p>
+                <div class="sizes" id="sizes-p1">
+                    <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
                 </div>
-                <div class="card-produto">
-                    <div class="img-placeholder">FOTO EM BREVE</div>
-                    <h3>Moletom Street Logo</h3>
-                    <p class="preco">R$ 249,90</p>
-                    <div class="sizes" id="sizes-p2">
-                        <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
-                        <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
-                        <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
-                        <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
-                    </div>
-                    <button class="btn-add" onclick="addToCart('Moletom Street', 249.90, 'p2')">Adicionar ao Carrinho</button>
-                </div>
+                <button class="btn-add" onclick="addToCart('Tee Classic', 119.90, 'p1')">Adicionar ao Carrinho</button>
             </div>
-        </section>
-    </div>
+
+            <div class="card-produto">
+                <div class="img-placeholder">FOTO EM BREVE</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Moletom Street Logo</h3>
+                <p style="color: var(--dourado); font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;">R$ 249,90</p>
+                <div class="sizes" id="sizes-p2">
+                    <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
+                    <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
+                    <button class="size-btn" onclick="selectSize(this, 'G')">G</button>
+                    <button class="size-btn" onclick="selectSize(this, 'GG')">GG</button>
+                </div>
+                <button class="btn-add" onclick="addToCart('Moletom Street', 249.90, 'p2')">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </section>
 
     <div id="cart-sidebar">
         <div class="cart-header">
-            <h2 class="fonte-street" style="color: var(--dourado);">Carrinho</h2>
-            <span style="cursor:pointer; font-size:30px;" onclick="toggleCart()">×</span>
+            <h2 class="fonte-street" style="color: var(--dourado); font-size: 2rem;">Carrinho</h2>
+            <span style="cursor:pointer; font-size:40px;" onclick="toggleCart()">×</span>
         </div>
-        <div class="cart-items" id="cart-items"></div>
-        <div class="cart-footer" style="border-top: 1px solid #333; padding-top: 20px;">
-            <h3 style="display: flex; justify-content: space-between; margin-bottom: 10px;">Total: <span>R$ <span id="cart-total">0.00</span></span></h3>
-            <button class="btn-add" onclick="finalizar()">Finalizar Pedido</button>
+        
+        <div class="cart-items" id="cart-items">
+            </div>
+
+        <div class="shipping-area">
+            <p style="font-size: 0.9rem; font-weight: bold;">Simular Frete:</p>
+            <div class="shipping-input-group">
+                <input type="text" id="cep" placeholder="00000-000">
+                <button onclick="calcFrete()">CALCULAR</button>
+            </div>
+            <p id="frete-res" style="font-size: 12px; margin-top: 10px; color: var(--dourado); font-weight: bold;"></p>
+        </div>
+
+        <div class="cart-footer">
+            <h3 style="display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 1.5rem;">
+                Total: <span>R$ <span id="cart-total">0.00</span></span>
+            </h3>
+            
+            <button class="btn-add" onclick="finalizarWhatsApp()" style="background: var(--whats); margin-bottom: 15px;">Finalizar no WhatsApp</button>
+            <button class="btn-add" onclick="finalizarInstagram()" style="background: var(--insta); color: white;">Finalizar no Instagram</button>
         </div>
     </div>
 
     <div class="social-group">
-        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn instagram">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-        </a>
-        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn whatsapp">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-        </a>
+        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn" style="background: #fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
+        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
     </div>
 
     <script>
@@ -152,9 +219,7 @@
             if(senha === "SEMMALDADE2026" || senha === "123") {
                 document.getElementById('tela-bloqueio').style.display = 'none';
                 document.body.style.overflow = 'auto';
-            } else {
-                alert("SENHA INCORRETA!");
-            }
+            } else { alert("SENHA INCORRETA!"); }
         }
 
         function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
@@ -167,34 +232,61 @@
         }
 
         function addToCart(name, price, id) {
-            if(!selectedSizes[id]) { alert("Selecione um tamanho!"); return; }
+            if(!selectedSizes[id]) { alert("Por favor, selecione um tamanho!"); return; }
             cart.push({ name, price, size: selectedSizes[id] });
             updateCart();
-            toggleCart();
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
         }
 
         function updateCart() {
             const itemsContainer = document.getElementById('cart-items');
             itemsContainer.innerHTML = "";
             let total = 0;
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 total += item.price;
                 itemsContainer.innerHTML += `
                     <div class="cart-item">
-                        <div><p><b>${item.name}</b></p><p><small>Tam: ${item.size}</small></p></div>
-                        <p>R$ ${item.price.toFixed(2)}</p>
+                        <div>
+                            <p style="font-weight:900;">${item.name}</p>
+                            <p><small>Tamanho: ${item.size}</small></p>
+                            <button onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:11px; text-decoration:underline; padding-top:5px;">Remover</button>
+                        </div>
+                        <p style="font-weight:bold;">R$ ${item.price.toFixed(2)}</p>
                     </div>`;
             });
             document.getElementById('cart-total').innerText = total.toFixed(2);
             document.getElementById('cart-count').innerText = cart.length;
         }
 
-        function finalizar() {
-            if(cart.length === 0) return;
-            let msg = "Olá! Quero finalizar meu pedido Sem Maldade:%0A%0A";
-            cart.forEach(i => msg += `• ${i.name} (${i.size}) - R$ ${i.price.toFixed(2)}%0A`);
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function calcFrete() {
+            const cep = document.getElementById('cep').value;
+            if(cep.length < 8) { alert("Digite um CEP válido!"); return; }
+            document.getElementById('frete-res').innerText = "🚚 FRETE FIXO PARA TODO BRASIL: R$ 20,00";
+        }
+
+        function finalizarWhatsApp() {
+            if(cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
+            let msg = "Salve! Quero finalizar meu pedido Sem Maldade:%0A%0A";
+            cart.forEach(i => msg += `• ${i.name} (Tamanho: ${i.size}) - R$ ${i.price.toFixed(2)}%0A`);
             msg += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
             window.open(`https://wa.me/5511977575021?text=${msg}`);
+        }
+
+        function finalizarInstagram() {
+            if(cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
+            let resumo = "Salve! Quero esses itens do Drop:\n\n";
+            cart.forEach(i => resumo += `• ${i.name} (Tam: ${i.size}) - R$ ${i.price.toFixed(2)}\n`);
+            resumo += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
+            
+            navigator.clipboard.writeText(resumo).then(() => {
+                alert("PEDIDO COPIADO! ✅\n\nAgora vou abrir o Instagram. É só você colar (Ctrl+V) a mensagem na nossa DM!");
+                window.open("https://ig.me/m/sem.maldade_________");
+            });
         }
     </script>
 </body>
