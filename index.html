@@ -39,7 +39,6 @@
             position: sticky; top: 0; z-index: 999; 
         }
         .cart-icon { cursor: pointer; position: relative; font-size: 28px; transition: 0.3s; }
-        .cart-icon:hover { color: var(--dourado); }
         .cart-count { 
             position: absolute; top: -5px; right: -10px; background: var(--dourado); 
             color: #000; font-size: 12px; width: 22px; height: 22px; 
@@ -64,13 +63,13 @@
         }
         .card-produto { 
             background: var(--cinza); padding: 25px; border: 1px solid #333; 
-            transition: 0.4s; position: relative; overflow: hidden;
+            transition: 0.4s; position: relative;
         }
         .card-produto:hover { border-color: var(--dourado); transform: translateY(-10px); }
         .img-placeholder { 
             width: 100%; height: 350px; background: #252525; margin-bottom: 20px; 
             display: flex; align-items: center; justify-content: center; 
-            color: #444; font-weight: 900; letter-spacing: 2px;
+            color: #444; font-weight: 900;
         }
 
         /* TAMANHOS */
@@ -80,45 +79,34 @@
             width: 45px; height: 45px; cursor: pointer; font-weight: bold; 
             transition: 0.3s; display: flex; align-items: center; justify-content: center;
         }
-        .size-btn:hover { border-color: var(--dourado); color: var(--dourado); }
         .size-btn.active { background: var(--dourado); color: #000; border-color: var(--dourado); }
 
         /* BOTÕES */
         .btn-add { 
             background: var(--dourado); color: #000; border: none; padding: 18px; 
             width: 100%; font-weight: 900; cursor: pointer; text-transform: uppercase; 
-            transition: 0.3s; letter-spacing: 1px;
+            transition: 0.3s;
         }
-        .btn-add:hover { background: #fff; }
 
         /* CARRINHO SIDEBAR */
         #cart-sidebar { 
             position: fixed; top: 0; right: -450px; width: 100%; max-width: 450px; 
-            height: 100%; background: #111; z-index: 1001; transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0); 
+            height: 100%; background: #111; z-index: 1001; transition: 0.5s; 
             padding: 40px 30px; box-shadow: -10px 0 30px rgba(0,0,0,0.8); display: flex; flex-direction: column; 
         }
         #cart-sidebar.open { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--dourado); padding-bottom: 20px; margin-bottom: 30px; }
-        .cart-items { flex-grow: 1; overflow-y: auto; margin-bottom: 20px; }
+        .cart-items { flex-grow: 1; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #222; }
 
         /* FRETE */
-        .shipping-area { background: #1a1a1a; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
-        .shipping-input-group { display: flex; gap: 10px; margin-top: 10px; }
-        .shipping-input-group input { 
-            background: #222; border: 1px solid #444; color: #fff; 
-            padding: 10px; flex: 1; outline: none; 
-        }
-        .shipping-input-group button { background: #333; color: #fff; border: none; padding: 0 15px; cursor: pointer; }
+        .shipping-box { background: #1a1a1a; padding: 15px; margin-bottom: 20px; border: 1px solid #333; }
+        .shipping-box input { background: #000; border: 1px solid #444; color: #fff; padding: 10px; width: 70%; outline: none; }
+        .shipping-box button { background: #333; color: #fff; border: none; padding: 10px; width: 25%; cursor: pointer; }
 
         /* SOCIAL FIXO */
         .social-group { position: fixed; bottom: 30px; left: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 998; }
-        .social-btn { 
-            width: 60px; height: 60px; border-radius: 50%; display: flex; 
-            justify-content: center; align-items: center; transition: 0.3s; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); 
-        }
-        .social-btn:hover { transform: scale(1.1); }
+        .social-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.3s; }
         .social-btn img { width: 35px; }
     </style>
 </head>
@@ -128,8 +116,8 @@
         <img src="img/logo.png" class="logo-bloqueio">
         <h2 class="fonte-street" style="color:#000; margin-bottom: 20px; font-size: 3.5rem;">DROP INITIUM</h2>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-            <input type="password" id="input-senha" placeholder="SENHA DE ACESSO" onkeypress="if(event.key === 'Enter') verificarSenha()" style="padding:18px; text-align:center; border:3px solid #000; width: 300px; font-weight: 900; font-size: 1.2rem; outline: none; text-transform: uppercase;">
-            <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:18px 80px; border:none; cursor:pointer; font-weight:900; text-transform: uppercase; letter-spacing: 3px;">ENTRAR NO DROP</button>
+            <input type="password" id="input-senha" placeholder="SENHA DE ACESSO" onkeypress="if(event.key === 'Enter') verificarSenha()" style="padding:18px; text-align:center; border:3px solid #000; width: 300px; font-weight: 900; font-size: 1.2rem; outline: none;">
+            <button onclick="verificarSenha()" style="background:#000; color:#fff; padding:18px 80px; border:none; cursor:pointer; font-weight:900; text-transform: uppercase;">ENTRAR NO DROP</button>
         </div>
     </div>
 
@@ -146,13 +134,12 @@
     </section>
 
     <section class="vitrine">
-        <h2 class="fonte-street" style="font-size: 4rem; color: var(--dourado); margin-bottom: 60px; letter-spacing: 5px;">Coleção 001</h2>
-        
+        <h2 class="fonte-street" style="font-size: 4rem; color: var(--dourado); margin-bottom: 60px;">Coleção 001</h2>
         <div class="grid-produtos">
             <div class="card-produto">
                 <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Tee Classic Sem Maldade</h3>
-                <p style="color: var(--dourado); font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;">R$ 119,90</p>
+                <h3>Tee Classic Sem Maldade</h3>
+                <p style="color: var(--dourado); font-weight: 900; margin: 10px 0;">R$ 119,90</p>
                 <div class="sizes" id="sizes-p1">
                     <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
                     <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
@@ -161,11 +148,10 @@
                 </div>
                 <button class="btn-add" onclick="addToCart('Tee Classic', 119.90, 'p1')">Adicionar ao Carrinho</button>
             </div>
-
             <div class="card-produto">
                 <div class="img-placeholder">FOTO EM BREVE</div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Moletom Street Logo</h3>
-                <p style="color: var(--dourado); font-size: 1.3rem; font-weight: 900; margin-bottom: 10px;">R$ 249,90</p>
+                <h3>Moletom Street Logo</h3>
+                <p style="color: var(--dourado); font-weight: 900; margin: 10px 0;">R$ 249,90</p>
                 <div class="sizes" id="sizes-p2">
                     <button class="size-btn" onclick="selectSize(this, 'P')">P</button>
                     <button class="size-btn" onclick="selectSize(this, 'M')">M</button>
@@ -183,31 +169,27 @@
             <span style="cursor:pointer; font-size:40px;" onclick="toggleCart()">×</span>
         </div>
         
-        <div class="cart-items" id="cart-items">
-            </div>
+        <div class="cart-items" id="cart-items"></div>
 
-        <div class="shipping-area">
-            <p style="font-size: 0.9rem; font-weight: bold;">Simular Frete:</p>
-            <div class="shipping-input-group">
-                <input type="text" id="cep" placeholder="00000-000">
-                <button onclick="calcFrete()">CALCULAR</button>
-            </div>
-            <p id="frete-res" style="font-size: 12px; margin-top: 10px; color: var(--dourado); font-weight: bold;"></p>
+        <div class="shipping-box">
+            <p style="font-size: 11px; margin-bottom: 5px; font-weight: bold;">SIMULAR FRETE:</p>
+            <input type="text" id="cep" placeholder="00000-000">
+            <button onclick="calcFrete()">OK</button>
+            <p id="frete-res" style="font-size: 11px; color: var(--dourado); margin-top: 5px;"></p>
         </div>
 
         <div class="cart-footer">
-            <h3 style="display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 1.5rem;">
+            <h3 style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 1.5rem;">
                 Total: <span>R$ <span id="cart-total">0.00</span></span>
             </h3>
-            
-            <button class="btn-add" onclick="finalizarWhatsApp()" style="background: var(--whats); margin-bottom: 15px;">Finalizar no WhatsApp</button>
+            <button class="btn-add" onclick="finalizarWhatsApp()" style="background: var(--whats); margin-bottom: 10px;">Finalizar no WhatsApp</button>
             <button class="btn-add" onclick="finalizarInstagram()" style="background: var(--insta); color: white;">Finalizar no Instagram</button>
         </div>
     </div>
 
     <div class="social-group">
         <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-btn" style="background: #fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-        <a href="https://wa.me/5511977575021" target="_blank" class="social-btn" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+        <a href="https://wa.me/5511989636387" target="_blank" class="social-btn" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
     </div>
 
     <script>
@@ -232,7 +214,7 @@
         }
 
         function addToCart(name, price, id) {
-            if(!selectedSizes[id]) { alert("Por favor, selecione um tamanho!"); return; }
+            if(!selectedSizes[id]) { alert("Escolha o tamanho!"); return; }
             cart.push({ name, price, size: selectedSizes[id] });
             updateCart();
             if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
@@ -247,44 +229,40 @@
                 itemsContainer.innerHTML += `
                     <div class="cart-item">
                         <div>
-                            <p style="font-weight:900;">${item.name}</p>
-                            <p><small>Tamanho: ${item.size}</small></p>
-                            <button onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:11px; text-decoration:underline; padding-top:5px;">Remover</button>
+                            <p><b>${item.name}</b></p>
+                            <p><small>Tam: ${item.size}</small></p>
+                            <button onclick="removeItem(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:10px; text-decoration:underline;">Remover</button>
                         </div>
-                        <p style="font-weight:bold;">R$ ${item.price.toFixed(2)}</p>
+                        <p>R$ ${item.price.toFixed(2)}</p>
                     </div>`;
             });
             document.getElementById('cart-total').innerText = total.toFixed(2);
             document.getElementById('cart-count').innerText = cart.length;
         }
 
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
+        function removeItem(index) { cart.splice(index, 1); updateCart(); }
 
         function calcFrete() {
             const cep = document.getElementById('cep').value;
-            if(cep.length < 8) { alert("Digite um CEP válido!"); return; }
-            document.getElementById('frete-res').innerText = "🚚 FRETE FIXO PARA TODO BRASIL: R$ 20,00";
+            if(cep.length < 8) return;
+            document.getElementById('frete-res').innerText = "🚚 FRETE FIXO: R$ 20,00";
         }
 
         function finalizarWhatsApp() {
-            if(cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
+            if(cart.length === 0) return;
             let msg = "Salve! Quero finalizar meu pedido Sem Maldade:%0A%0A";
-            cart.forEach(i => msg += `• ${i.name} (Tamanho: ${i.size}) - R$ ${i.price.toFixed(2)}%0A`);
+            cart.forEach(i => msg += `• ${i.name} (${i.size}) - R$ ${i.price.toFixed(2)}%0A`);
             msg += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
-            window.open(`https://wa.me/5511977575021?text=${msg}`);
+            window.open(`https://wa.me/5511989636387?text=${msg}`);
         }
 
         function finalizarInstagram() {
-            if(cart.length === 0) { alert("Seu carrinho está vazio!"); return; }
-            let resumo = "Salve! Quero esses itens do Drop:\n\n";
+            if(cart.length === 0) return;
+            let resumo = "Salve! Quero esses itens:\n\n";
             cart.forEach(i => resumo += `• ${i.name} (Tam: ${i.size}) - R$ ${i.price.toFixed(2)}\n`);
             resumo += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
-            
             navigator.clipboard.writeText(resumo).then(() => {
-                alert("PEDIDO COPIADO! ✅\n\nAgora vou abrir o Instagram. É só você colar (Ctrl+V) a mensagem na nossa DM!");
+                alert("PEDIDO COPIADO! ✅\nCole a mensagem na DM do Instagram.");
                 window.open("https://ig.me/m/sem.maldade_________");
             });
         }
