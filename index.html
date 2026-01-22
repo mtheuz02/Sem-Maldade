@@ -22,7 +22,7 @@
         
         .fonte-street { font-family: 'Inter', sans-serif !important; text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
 
-        /* --- AJUSTE DOS LOGOS 3D --- */
+        /* Animações e 3D */
         @keyframes girar3d { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
 
         /* Tela de Bloqueio */
@@ -31,35 +31,57 @@
             background: #000; z-index: 10000; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; transition: 0.8s ease-in-out;
         }
-        .logo-bloqueio { 
-            width: 250px; 
-            animation: girar3d 6s linear infinite; /* Velocidade Base */
-            transform-style: preserve-3d; /* Garante o efeito 3D */
-            margin-bottom: 40px; 
-        }
-
-        /* Header */
-        header { 
-            padding: 25px 5%; background: rgba(5, 5, 5, 0.95); 
-            border-bottom: 1px solid var(--cinza-borda); display: flex; 
-            justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 999; backdrop-filter: blur(10px);
-        }
-        .logo-nav { 
-            width: 120px; 
-            animation: girar3d 6s linear infinite; /* Agora está igual (era 8s) */
-            transform-style: preserve-3d; /* Adicionado para igualar o efeito */
-        }
-        /* --------------------------- */
-
+        .logo-bloqueio { width: 250px; animation: girar3d 6s linear infinite; transform-style: preserve-3d; margin-bottom: 40px; }
+        
         .input-acesso { padding: 20px; text-align: center; border: 2px solid var(--branco); width: 320px; background: transparent; color: white; font-size: 1.2rem; font-weight: 700; outline: none; margin-bottom: 20px; }
         .btn-acesso { background: var(--branco); color: #000; padding: 20px 80px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
         .btn-acesso:hover { background: #ccc; transform: scale(1.02); }
 
-        .cart-trigger { cursor: pointer; position: relative; transition: 0.3s; color: var(--branco); }
-        .cart-badge { position: absolute; top: -8px; right: -12px; background: var(--branco); color: #000; font-size: 12px; width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; }
+        /* HEADER & SEARCH BAR */
+        header { 
+            padding: 20px 5%; background: rgba(5, 5, 5, 0.95); 
+            border-bottom: 1px solid var(--cinza-borda); display: flex; 
+            justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 999; backdrop-filter: blur(10px);
+        }
+        
+        /* Nova Barra de Pesquisa Clean */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 180px; /* Tamanho fixo para equilíbrio */
+        }
+        .search-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #444;
+            color: #fff;
+            padding: 8px 0;
+            outline: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.4s;
+        }
+        .search-input::placeholder { color: #555; font-weight: 400; }
+        .search-input:focus { border-bottom-color: var(--branco); }
+        .search-icon {
+            position: absolute;
+            right: 0;
+            pointer-events: none;
+            color: #555;
+            transition: 0.3s;
+        }
+        .search-input:focus + .search-icon { color: var(--branco); }
 
-        /* HERO EDITADO */
+        .logo-nav { width: 120px; animation: girar3d 6s linear infinite; transform-style: preserve-3d; }
+        
+        .cart-trigger { cursor: pointer; position: relative; transition: 0.3s; color: var(--branco); display: flex; align-items: center; width: 180px; justify-content: flex-end; }
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: var(--branco); color: #000; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; }
+
+        /* HERO */
         .hero { 
             height: 70vh; display: flex; align-items: flex-end; justify-content: center; 
             text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/15% no-repeat fixed;
@@ -67,8 +89,8 @@
         }
         .hero h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); color: var(--branco); letter-spacing: 2px; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
 
-        /* Vitrine */
-        .vitrine { padding: 60px 5% 100px 5%; background: var(--preto); }
+        /* VITRINE */
+        .vitrine { padding: 60px 5% 100px 5%; background: var(--preto); min-height: 80vh; }
         .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
         
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1300px; margin: 0 auto; }
@@ -76,6 +98,19 @@
         .card-produto:hover { border-color: var(--branco); }
         .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; color: #555; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; }
 
+        /* Mensagem de erro na busca */
+        #msg-erro-busca {
+            display: none;
+            text-align: center;
+            width: 100%;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2rem;
+            border: 1px dashed #333;
+        }
+
+        /* Elementos UI */
         .sizes-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; }
         .size-btn { border: 1px solid #444; background: transparent; color: #888; width: 50px; height: 50px; cursor: pointer; font-weight: 400; transition: 0.2s; font-size: 0.9rem; }
         .size-btn:hover { border-color: var(--branco); color: var(--branco); }
@@ -106,10 +141,13 @@
         .social-icon img { width: 30px; }
 
         @media (max-width: 768px) {
+            header { padding: 15px 3%; }
             .grid-produtos { grid-template-columns: 1fr; }
             .hero { align-items: flex-end; padding-bottom: 20px; }
             .hero h1 { font-size: 1.2rem; }
             #carrinho-lateral { max-width: 100%; }
+            .search-box { width: 100px; } /* Ajuste mobile */
+            .cart-trigger { width: 100px; }
         }
     </style>
 </head>
@@ -123,10 +161,15 @@
     </div>
 
     <header>
-        <div style="width: 60px;"></div>
+        <div class="search-box">
+            <input type="text" id="campo-busca" class="search-input" placeholder="BUSCAR..." onkeyup="filtrarProdutos()">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+
         <img src="img/logo.png" class="logo-nav" alt="Logo">
+
         <div class="cart-trigger" onclick="toggleCart()">
-            <span style="font-size: 28px;">🛒</span>
+            <span style="font-size: 26px;">🛒</span>
             <div class="cart-badge" id="cart-count">0</div>
         </div>
     </header>
@@ -138,10 +181,11 @@
     <main class="vitrine">
         <h2 class="fonte-street titulo-secao">New Drop</h2>
         
-        <div class="grid-produtos">
+        <div class="grid-produtos" id="grade-produtos">
+            
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
-                <h3 style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camiseta Classic Logo</h3>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camiseta Classic Logo</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 119,90</p>
                 <div class="sizes-container" id="sizes-p1">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p1')">P</button>
@@ -154,7 +198,7 @@
 
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
-                <h3 style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Heavy</h3>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Heavy</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 249,90</p>
                 <div class="sizes-container" id="sizes-p2">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p2')">P</button>
@@ -164,6 +208,9 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Moletom Street', 249.90, 'p2')">Adicionar ao Carrinho</button>
             </div>
+
+            <div id="msg-erro-busca">NENHUM PRODUTO ENCONTRADO.</div>
+
         </div>
     </main>
 
@@ -198,6 +245,32 @@
 
     <script>
         let carrinho = []; let escolhas = {};
+
+        // --- SISTEMA DE BUSCA ---
+        function filtrarProdutos() {
+            const termo = document.getElementById('campo-busca').value.toLowerCase();
+            const produtos = document.querySelectorAll('.card-produto');
+            const msgErro = document.getElementById('msg-erro-busca');
+            let encontrouAlgo = false;
+
+            produtos.forEach(prod => {
+                const titulo = prod.querySelector('.nome-prod').innerText.toLowerCase();
+                if(titulo.includes(termo)) {
+                    prod.style.display = 'block';
+                    encontrouAlgo = true;
+                } else {
+                    prod.style.display = 'none';
+                }
+            });
+
+            if(!encontrouAlgo) {
+                msgErro.style.display = 'block';
+            } else {
+                msgErro.style.display = 'none';
+            }
+        }
+        // ------------------------
+
         function handleEnter(e) { if(e.key === 'Enter') validaAcesso(); }
         function validaAcesso() {
             const pass = document.getElementById('pass-field').value.toUpperCase().trim();
