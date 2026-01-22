@@ -42,7 +42,6 @@
             position: sticky; top: 0; z-index: 999; backdrop-filter: blur(10px);
         }
 
-        /* BARRA DE PESQUISA (Destaque Branco) */
         .search-box { position: relative; display: flex; align-items: center; width: 200px; }
         .search-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid #ffffff; color: #ffffff; padding: 8px 0; outline: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         .search-input::placeholder { color: rgba(255, 255, 255, 0.8); font-weight: 700; }
@@ -52,7 +51,7 @@
         .cart-trigger { cursor: pointer; position: relative; transition: 0.3s; color: var(--branco); display: flex; align-items: center; width: 200px; justify-content: flex-end; }
         .cart-badge { position: absolute; top: -5px; right: -10px; background: var(--branco); color: #000; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; }
 
-        /* HERO */
+        /* HERO (Desktop) */
         .hero { 
             height: 70vh; display: flex; align-items: flex-end; justify-content: center; 
             text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/15% no-repeat fixed;
@@ -64,15 +63,7 @@
         .vitrine { padding: 60px 5% 100px 5%; background: var(--preto); min-height: 80vh; }
         .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
         
-        /* Grid Responsivo Inteligente */
-        .grid-produtos { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 50px; 
-            max-width: 1300px; 
-            margin: 0 auto; 
-        }
-
+        .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1300px; margin: 0 auto; }
         .card-produto { background: var(--cinza-fundo); padding: 30px; border: 1px solid var(--cinza-borda); transition: 0.3s; position: relative; overflow: hidden; }
         .card-produto:hover { border-color: var(--branco); }
         .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; color: #555; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; }
@@ -81,10 +72,7 @@
         .size-btn { border: 1px solid #444; background: transparent; color: #888; width: 50px; height: 50px; cursor: pointer; font-weight: 400; transition: 0.2s; font-size: 0.9rem; }
         .size-btn:hover { border-color: var(--branco); color: var(--branco); }
         .size-btn.active { background: var(--branco); color: #000; border-color: var(--branco); font-weight: bold; }
-
         .btn-compra { background: var(--branco); color: #000; border: none; padding: 20px; width: 100%; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-size: 1rem; }
-        
-        #msg-erro-busca { display: none; text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px; color: #fff; font-size: 1.2rem; border: 1px dashed #fff; font-weight: bold; }
 
         /* CARRINHO */
         #carrinho-lateral { position: fixed; top: 0; right: -500px; width: 100%; max-width: 480px; height: 100%; background: #000; z-index: 1001; transition: 0.6s cubic-bezier(0.77, 0, 0.175, 1); padding: 50px 35px; display: flex; flex-direction: column; border-left: 1px solid var(--cinza-borda); }
@@ -92,65 +80,44 @@
         .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--branco); padding-bottom: 20px; }
         .cart-items-list { flex-grow: 1; overflow-y: auto; margin-bottom: 30px; }
         .item-no-carrinho { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #222; }
-        .frete-area { background: #111; padding: 20px; margin-bottom: 30px; border: 1px solid #333; }
-        .frete-input-group { display: flex; gap: 10px; margin-top: 10px; }
-        .frete-input-group input { background: #000; border: 1px solid #333; color: #fff; padding: 12px; flex: 1; outline: none; font-size: 0.9rem; }
-        .frete-input-group button { background: var(--branco); color: #000; border: none; padding: 0 20px; cursor: pointer; font-weight: 700; }
         .checkout-btn { padding: 20px; width: 100%; border: none; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; }
         .btn-whats { background: var(--whats); color: #fff; }
         .btn-insta { background: var(--insta); color: #fff; }
+
+        /* SOCIAIS */
         .sociais-fixos { position: fixed; bottom: 40px; left: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 998; }
         .social-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.6); filter: grayscale(100%); }
         .social-icon:hover { filter: grayscale(0%); transform: scale(1.1); }
         .social-icon img { width: 30px; }
 
-        /* --- AJUSTES MOBILE (2 colunas + Layout Compacto) --- */
+        /* --- AJUSTES MOBILE --- */
         @media (max-width: 768px) {
             header { padding: 15px 3%; }
-            .hero { align-items: flex-end; padding-bottom: 20px; }
-            .hero h1 { font-size: 1.2rem; }
-            #carrinho-lateral { max-width: 100%; }
-            .search-box { width: 100px; }
-            .cart-trigger { width: 100px; }
-
-            /* FORÇAR 2 COLUNAS */
-            .grid-produtos { 
-                grid-template-columns: 1fr 1fr; /* 2 colunas */
-                gap: 10px; /* Espaço menor entre elas */
-                padding: 0 10px; 
-            }
-
-            /* Reduzir tamanho dos elementos dentro do card para caber */
-            .card-produto { 
-                padding: 15px; /* Menos padding interno */
-            }
-            .img-container { 
-                height: 180px; /* Imagem menor */
-                font-size: 0.7rem; 
-                margin-bottom: 15px;
-            }
-            .nome-prod { 
-                font-size: 1rem !important; /* Título menor */
-                min-height: 40px; /* Altura fixa para alinhar */
-            }
-            .card-produto p {
-                font-size: 1rem !important;
-            }
             
-            /* Botões de tamanho menores */
-            .sizes-container { gap: 5px; margin: 15px 0; }
-            .size-btn { width: 30px; height: 30px; font-size: 0.75rem; }
-
-            /* Botão de comprar compacto */
-            .btn-compra { 
-                padding: 15px 5px; 
-                font-size: 0.8rem; 
+            /* HERO MOBILE: Imagem de fundo maior (40%) */
+            .hero { 
+                height: 50vh; 
+                background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/40% no-repeat fixed;
+                padding-bottom: 20px; 
             }
+            .hero h1 { font-size: 1.1rem; letter-spacing: 1px; }
+
+            #carrinho-lateral { max-width: 100%; }
+            .search-box { width: 110px; }
+            .cart-trigger { width: 110px; }
+
+            .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
+            .card-produto { padding: 15px; }
+            .img-container { height: 180px; font-size: 0.7rem; margin-bottom: 15px; }
+            .nome-prod { font-size: 0.95rem !important; min-height: 40px; }
+            .card-produto p { font-size: 1rem !important; }
+            .sizes-container { gap: 5px; margin: 15px 0; }
+            .size-btn { width: 32px; height: 32px; font-size: 0.7rem; }
+            .btn-compra { padding: 15px 5px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
-
     <div id="tela-bloqueio">
         <img src="img/logo.png" class="logo-bloqueio" alt="Logo">
         <h2 class="fonte-street" style="color: var(--branco); margin-bottom: 30px; font-size: 2.5rem;">Acesso Restrito</h2>
@@ -176,9 +143,7 @@
 
     <main class="vitrine">
         <h2 class="fonte-street titulo-secao">New Drop</h2>
-        
         <div class="grid-produtos" id="grade-produtos">
-            
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
                 <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camiseta Classic Logo</h3>
@@ -191,7 +156,6 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Camiseta Classic', 119.90, 'p1')">Comprar</button>
             </div>
-
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
                 <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Heavy</h3>
@@ -204,7 +168,6 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Moletom Street', 249.90, 'p2')">Comprar</button>
             </div>
-
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
                 <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Calça Cargo Black</h3>
@@ -217,7 +180,6 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Calça Cargo Black', 189.90, 'p3')">Comprar</button>
             </div>
-
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
                 <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Boné 5-Panel</h3>
@@ -227,7 +189,6 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Boné 5-Panel', 89.90, 'p4')">Comprar</button>
             </div>
-
             <div class="card-produto">
                 <div class="img-container">FOTO EM BREVE</div>
                 <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Jaqueta Windbreaker</h3>
@@ -240,9 +201,7 @@
                 </div>
                 <button class="btn-compra" onclick="adicionar('Jaqueta Windbreaker', 329.90, 'p5')">Comprar</button>
             </div>
-
             <div id="msg-erro-busca">NENHUM PRODUTO ENCONTRADO.</div>
-
         </div>
     </main>
 
@@ -252,14 +211,6 @@
             <span style="cursor:pointer; font-size: 40px;" onclick="toggleCart()">×</span>
         </div>
         <div class="cart-items-list" id="cart-list"></div>
-        <div class="frete-area">
-            <p style="font-size: 0.8rem; color: #888; font-weight: bold;">CALCULAR FRETE:</p>
-            <div class="frete-input-group">
-                <input type="text" id="cep-input" placeholder="00000-000">
-                <button onclick="calcFrete()">OK</button>
-            </div>
-            <div id="frete-msg" style="margin-top: 10px; font-size: 0.9rem; font-weight: bold; color: var(--branco);"></div>
-        </div>
         <div class="cart-footer">
             <div style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 900; margin-bottom: 30px; border-top: 1px solid #333; padding-top: 20px;">
                 <span>TOTAL:</span>
@@ -277,7 +228,6 @@
 
     <script>
         let carrinho = []; let escolhas = {};
-
         function filtrarProdutos() {
             const termo = document.getElementById('campo-busca').value.toLowerCase();
             const produtos = document.querySelectorAll('.card-produto');
@@ -290,7 +240,6 @@
             });
             msgErro.style.display = encontrouAlgo ? 'none' : 'block';
         }
-
         function handleEnter(e) { if(e.key === 'Enter') validaAcesso(); }
         function validaAcesso() {
             const pass = document.getElementById('pass-field').value.toUpperCase().trim();
@@ -318,10 +267,6 @@
                 l.innerHTML += `<div class="item-no-carrinho"><div><p style="font-weight:700;">${item.nome}</p><p style="color:#666;font-size:0.9rem;">Tam: ${item.tam}</p><button onclick="remover(${i})" style="background:none;border:none;color:#888;cursor:pointer;text-decoration:underline;font-size:11px;margin-top:5px;">Remover</button></div><p style="font-weight:700;">R$ ${item.preco.toFixed(2)}</p></div>`;
             });
             c.innerText = carrinho.length; t.innerText = tot.toFixed(2).replace('.', ',');
-        }
-        function calcFrete() { 
-            if(document.getElementById('cep-input').value.length < 8) return; 
-            document.getElementById('frete-msg').innerText = "🚚 FRETE: R$ 20,00"; 
         }
         function checkoutWhats() {
             if(carrinho.length === 0) return;
