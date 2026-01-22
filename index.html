@@ -11,7 +11,6 @@
         :root { 
             --preto: #050505; 
             --branco: #ffffff; 
-            --destaque: #ffffff; /* Mudado de Dourado para Branco */
             --cinza-fundo: #0f0f0f; 
             --cinza-borda: #333333;
             --insta: #e1306c; 
@@ -22,34 +21,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--preto); color: var(--branco); overflow-x: hidden; line-height: 1.6; }
         
-        /* Títulos Clean (Modernos) */
         .fonte-street { 
             font-family: 'Inter', sans-serif !important; 
             text-transform: uppercase; 
             font-weight: 900; 
-            letter-spacing: -1px; /* Letras mais juntas para visual moderno */
+            letter-spacing: -1px; 
         }
 
         /* Tela de Bloqueio */
         #tela-bloqueio { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #000; z-index: 10000; display: flex; flex-direction: column; /* Fundo preto agora */
+            background: #000; z-index: 10000; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; transition: 0.8s ease-in-out;
         }
         .logo-bloqueio { width: 250px; animation: girar3d 6s linear infinite; margin-bottom: 40px; }
-
         @keyframes girar3d { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
 
         .input-acesso { 
             padding: 20px; text-align: center; border: 2px solid var(--branco); width: 320px; 
             background: transparent; color: white; font-size: 1.2rem; font-weight: 700; outline: none; margin-bottom: 20px;
         }
-        .input-acesso::placeholder { color: #666; }
-
         .btn-acesso { 
             background: var(--branco); color: #000; padding: 20px 80px; border: none; 
-            font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px;
-            transition: 0.3s;
+            font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s;
         }
         .btn-acesso:hover { background: #ccc; transform: scale(1.02); }
 
@@ -68,17 +62,39 @@
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; 
         }
 
-        /* Hero Section Clean */
+        /* HERO EDITADO (Texto embaixo) */
         .hero { 
-            height: 70vh; display: flex; align-items: center; justify-content: center; 
-            text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/logo.png') center/15% no-repeat fixed;
+            height: 70vh; 
+            display: flex; 
+            align-items: flex-end; /* Joga o conteúdo para baixo */
+            justify-content: center; 
+            text-align: center; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/15% no-repeat fixed;
             border-bottom: 1px solid var(--branco);
+            padding-bottom: 30px; /* Espaço entre o texto e a linha de baixo */
         }
-        .hero h1 { font-size: clamp(3rem, 12vw, 6rem); color: var(--branco); letter-spacing: -2px; }
+        
+        /* Frase "VIVA SEM MALDADE" menor */
+        .hero h1 { 
+            font-size: clamp(1.5rem, 4vw, 2.5rem); /* Fonte bem menor agora */
+            color: var(--branco); 
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
 
-        /* Vitrine Minimalista */
-        .vitrine { padding: 100px 5%; background: var(--preto); }
-        .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; margin-bottom: 80px; }
+        /* Vitrine */
+        .vitrine { padding: 60px 5% 100px 5%; background: var(--preto); }
+        
+        /* Título "New Drop" */
+        .titulo-secao { 
+            font-size: 3rem; 
+            color: var(--branco); 
+            text-align: center; 
+            margin-bottom: 60px; 
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
         
         .grid-produtos { 
             display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -96,7 +112,7 @@
             color: #555; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px;
         }
 
-        /* Botões de Tamanho Clean */
+        /* Botões de Tamanho */
         .sizes-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; }
         .size-btn { 
             border: 1px solid #444; background: transparent; color: #888; 
@@ -106,7 +122,6 @@
         .size-btn:hover { border-color: var(--branco); color: var(--branco); }
         .size-btn.active { background: var(--branco); color: #000; border-color: var(--branco); font-weight: bold; }
 
-        /* Botão Compra Minimal */
         .btn-compra { 
             background: var(--branco); color: #000; border: none; padding: 20px; 
             width: 100%; font-weight: 800; cursor: pointer; text-transform: uppercase; 
@@ -123,21 +138,17 @@
         #carrinho-lateral.aberto { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--branco); padding-bottom: 20px; }
         .cart-items-list { flex-grow: 1; overflow-y: auto; margin-bottom: 30px; }
+        
         .item-no-carrinho { 
             display: flex; justify-content: space-between; align-items: center; 
             margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #222; 
         }
 
-        /* Frete Clean */
         .frete-area { background: #111; padding: 20px; margin-bottom: 30px; border: 1px solid #333; }
         .frete-input-group { display: flex; gap: 10px; margin-top: 10px; }
-        .frete-input-group input { 
-            background: #000; border: 1px solid #333; color: #fff; 
-            padding: 12px; flex: 1; outline: none; font-size: 0.9rem;
-        }
+        .frete-input-group input { background: #000; border: 1px solid #333; color: #fff; padding: 12px; flex: 1; outline: none; font-size: 0.9rem; }
         .frete-input-group button { background: var(--branco); color: #000; border: none; padding: 0 20px; cursor: pointer; font-weight: 700; }
 
-        /* Checkout */
         .checkout-btn { 
             padding: 20px; width: 100%; border: none; font-weight: 800; 
             text-transform: uppercase; cursor: pointer; margin-bottom: 15px; 
@@ -146,7 +157,6 @@
         .btn-whats { background: var(--whats); color: #fff; }
         .btn-insta { background: var(--insta); color: #fff; }
 
-        /* Sociais */
         .sociais-fixos { position: fixed; bottom: 40px; left: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 998; }
         .social-icon { 
             width: 60px; height: 60px; border-radius: 50%; display: flex; 
@@ -158,7 +168,8 @@
 
         @media (max-width: 768px) {
             .grid-produtos { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3.5rem; }
+            .hero { align-items: flex-end; padding-bottom: 20px; } /* Ajuste Mobile */
+            .hero h1 { font-size: 1.2rem; }
             #carrinho-lateral { max-width: 100%; }
         }
     </style>
@@ -166,7 +177,7 @@
 <body>
 
     <div id="tela-bloqueio">
-        <img src="img/logo.png" class="logo-bloqueio" alt="Logo Sem Maldade">
+        <img src="img/logo.png" class="logo-bloqueio" alt="Logo">
         <h2 class="fonte-street" style="color: var(--branco); margin-bottom: 30px; font-size: 2.5rem;">Acesso Restrito</h2>
         <input type="password" id="pass-field" class="input-acesso" placeholder="DIGITE A SENHA" onkeypress="handleEnter(event)">
         <button onclick="validaAcesso()" class="btn-acesso">Desbloquear</button>
@@ -186,7 +197,7 @@
     </section>
 
     <main class="vitrine">
-        <h2 class="fonte-street titulo-secao">Drop 001 - Initium</h2>
+        <h2 class="fonte-street titulo-secao">New Drop</h2>
         
         <div class="grid-produtos">
             <div class="card-produto">
@@ -250,86 +261,57 @@
     </div>
 
     <script>
-        let carrinho = [];
-        let escolhas = {};
-
+        let carrinho = []; let escolhas = {};
         function handleEnter(e) { if(e.key === 'Enter') validaAcesso(); }
 
         function validaAcesso() {
             const pass = document.getElementById('pass-field').value.toUpperCase().trim();
             if(pass === "SEMMALDADE2026" || pass === "123") {
-                const tela = document.getElementById('tela-bloqueio');
-                tela.style.opacity = '0';
-                setTimeout(() => { tela.style.display = 'none'; document.body.style.overflow = 'auto'; }, 800);
+                const t = document.getElementById('tela-bloqueio'); t.style.opacity = '0';
+                setTimeout(() => { t.style.display = 'none'; document.body.style.overflow = 'auto'; }, 800);
             } else { alert("SENHA INCORRETA"); }
         }
 
         function toggleCart() { document.getElementById('carrinho-lateral').classList.toggle('aberto'); }
-
         function selecionarTamanho(btn, tam, prodId) {
-            const pai = btn.parentElement;
-            pai.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            escolhas[prodId] = tam;
+            btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active'); escolhas[prodId] = tam;
         }
 
         function adicionar(nome, preco, prodId) {
-            const tam = escolhas[prodId];
-            if(!tam) { alert("Selecione um tamanho."); return; }
-            carrinho.push({ nome, preco, tam });
-            atualizaCarrinho();
+            const tam = escolhas[prodId]; if(!tam) { alert("Selecione um tamanho."); return; }
+            carrinho.push({ nome, preco, tam }); atualizaCarrinho();
             if(!document.getElementById('carrinho-lateral').classList.contains('aberto')) toggleCart();
         }
 
-        function remover(index) {
-            carrinho.splice(index, 1);
-            atualizaCarrinho();
-        }
-
+        function remover(i) { carrinho.splice(i, 1); atualizaCarrinho(); }
         function atualizaCarrinho() {
-            const lista = document.getElementById('cart-list');
-            const cont = document.getElementById('cart-count');
-            const totalDisplay = document.getElementById('cart-total');
-            lista.innerHTML = ""; let total = 0;
+            const l = document.getElementById('cart-list'); const c = document.getElementById('cart-count'); const t = document.getElementById('cart-total');
+            l.innerHTML = ""; let tot = 0;
             carrinho.forEach((item, i) => {
-                total += item.preco;
-                lista.innerHTML += `
-                    <div class="item-no-carrinho">
-                        <div>
-                            <p style="font-weight: 700; font-size: 1rem;">${item.nome}</p>
-                            <p style="color: #666; font-size: 0.9rem;">Tam: ${item.tam}</p>
-                            <button onclick="remover(${i})" style="background:none; border:none; color: #888; cursor:pointer; text-decoration: underline; font-size: 11px; margin-top: 5px;">Remover</button>
-                        </div>
-                        <p style="font-weight: 700;">R$ ${item.preco.toFixed(2)}</p>
-                    </div>`;
+                tot += item.preco;
+                l.innerHTML += `<div class="item-no-carrinho"><div><p style="font-weight:700;">${item.nome}</p><p style="color:#666;font-size:0.9rem;">Tam: ${item.tam}</p><button onclick="remover(${i})" style="background:none;border:none;color:#888;cursor:pointer;text-decoration:underline;font-size:11px;margin-top:5px;">Remover</button></div><p style="font-weight:700;">R$ ${item.preco.toFixed(2)}</p></div>`;
             });
-            cont.innerText = carrinho.length;
-            totalDisplay.innerText = total.toFixed(2).replace('.', ',');
+            c.innerText = carrinho.length; t.innerText = tot.toFixed(2).replace('.', ',');
         }
 
-        function calcFrete() {
-            const cep = document.getElementById('cep-input').value;
-            if(cep.length < 8) return;
-            document.getElementById('frete-msg').innerText = "🚚 FRETE: R$ 20,00";
+        function calcFrete() { 
+            if(document.getElementById('cep-input').value.length < 8) return; 
+            document.getElementById('frete-msg').innerText = "🚚 FRETE: R$ 20,00"; 
         }
 
         function checkoutWhats() {
             if(carrinho.length === 0) return;
-            let msg = "Salve! Pedido Sem Maldade:%0A%0A";
-            carrinho.forEach(i => msg += `• ${i.nome} (${i.tam})%0A`);
-            msg += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
-            window.open(`https://wa.me/5511989636387?text=${msg}`);
+            let m = "Salve! Pedido Sem Maldade:%0A%0A"; carrinho.forEach(i => m += `• ${i.nome} (${i.tam})%0A`);
+            m += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/5511989636387?text=${m}`);
         }
 
         function checkoutInsta() {
             if(carrinho.length === 0) return;
-            let texto = "Salve! Pedido Sem Maldade:\n\n";
-            carrinho.forEach(i => texto += `• ${i.nome} (${i.tam})\n`);
-            texto += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
-            navigator.clipboard.writeText(texto).then(() => {
-                alert("COPIADO! Cole na DM.");
-                window.open("https://ig.me/m/sem.maldade_________");
-            });
+            let t = "Salve! Pedido Sem Maldade:\n\n"; carrinho.forEach(i => t += `• ${i.nome} (${i.tam})\n`);
+            t += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
+            navigator.clipboard.writeText(t).then(() => { alert("COPIADO! Cole na DM."); window.open("https://ig.me/m/sem.maldade_________"); });
         }
     </script>
 </body>
