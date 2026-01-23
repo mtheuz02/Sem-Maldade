@@ -205,9 +205,9 @@
 
             <div class="card-produto">
                 <div class="img-container">
-                    <img src="img/bermudapreta.png" alt="Bermuda Preta">
+                    <img src="img/bermudapreta.png" alt="Bermuda Sem Maldade">
                 </div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Bermuda Street Cargo</h3>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Bermuda Sem Maldade</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 99,90</p>
                 <div class="sizes-container" id="sizes-p5">
                     <button class="size-btn" onclick="selecionarTamanho(this, '38', 'p5')">38</button>
@@ -215,14 +215,14 @@
                     <button class="size-btn" onclick="selecionarTamanho(this, '42', 'p5')">42</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, '44', 'p5')">44</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Bermuda Cargo', 99.90, 'p5')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Bermuda Sem Maldade', 99.90, 'p5')">Comprar</button>
             </div>
 
             <div class="card-produto">
                 <div class="img-container">
-                    <img src="img/corinthianslarnja.png" alt="Camisa Corinthians Laranja">
+                    <img src="img/jersey.png" alt="Timão Sem Maldade">
                 </div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Jersey Laranja Ed.</h3>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Timão Sem Maldade</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 159,90</p>
                 <div class="sizes-container" id="sizes-p6">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p6')">P</button>
@@ -230,7 +230,7 @@
                     <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p6')">G</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p6')">GG</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Jersey Laranja', 159.90, 'p6')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Timão Sem Maldade', 159.90, 'p6')">Comprar</button>
             </div>
 
             <div id="msg-erro-busca">NENHUM PRODUTO ENCONTRADO.</div>
@@ -254,12 +254,14 @@
     </div>
 
     <div class="sociais-fixos">
-        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-icon" style="background: #fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-        <a href="https://wa.me/5511989636387" target="_blank" class="social-icon" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-icon" style="background: #fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+        <a href="https://wa.me/5511989636387" target="_blank" class="social-icon" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
     </div>
 
     <script>
-        let carrinho = []; let escolhas = {};
+        let carrinho = []; 
+        let escolhas = {};
+
         function filtrarProdutos() {
             const termo = document.getElementById('campo-busca').value.toLowerCase();
             const produtos = document.querySelectorAll('.card-produto');
@@ -272,45 +274,77 @@
             });
             msgErro.style.display = encontrouAlgo ? 'none' : 'block';
         }
+
         function handleEnter(e) { if(e.key === 'Enter') validaAcesso(); }
+
         function validaAcesso() {
             const pass = document.getElementById('pass-field').value.toUpperCase().trim();
             if(pass === "SEMMALDADE2026" || pass === "123") {
-                const t = document.getElementById('tela-bloqueio'); t.style.opacity = '0';
+                const t = document.getElementById('tela-bloqueio'); 
+                t.style.opacity = '0';
                 setTimeout(() => { t.style.display = 'none'; document.body.style.overflow = 'auto'; }, 800);
             } else { alert("SENHA INCORRETA"); }
         }
+
         function toggleCart() { document.getElementById('carrinho-lateral').classList.toggle('aberto'); }
+
         function selecionarTamanho(btn, tam, prodId) {
             btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active'); escolhas[prodId] = tam;
+            btn.classList.add('active'); 
+            escolhas[prodId] = tam;
         }
+
         function adicionar(nome, preco, prodId) {
-            const tam = escolhas[prodId]; if(!tam) { alert("Selecione um tamanho."); return; }
-            carrinho.push({ nome, preco, tam }); atualizaCarrinho();
+            const tam = escolhas[prodId]; 
+            if(!tam) { alert("Selecione um tamanho."); return; }
+            carrinho.push({ nome, preco, tam }); 
+            atualizaCarrinho();
             if(!document.getElementById('carrinho-lateral').classList.contains('aberto')) toggleCart();
         }
-        function remover(i) { carrinho.splice(i, 1); atualizaCarrinho(); }
+
+        function remover(i) { 
+            carrinho.splice(i, 1); 
+            atualizaCarrinho(); 
+        }
+
         function atualizaCarrinho() {
-            const l = document.getElementById('cart-list'); const c = document.getElementById('cart-count'); const t = document.getElementById('cart-total');
-            l.innerHTML = ""; let tot = 0;
+            const l = document.getElementById('cart-list'); 
+            const c = document.getElementById('cart-count'); 
+            const t = document.getElementById('cart-total');
+            l.innerHTML = ""; 
+            let tot = 0;
             carrinho.forEach((item, i) => {
                 tot += item.preco;
-                l.innerHTML += `<div class="item-no-carrinho"><div><p style="font-weight:700;">${item.nome}</p><p style="color:#666;font-size:0.9rem;">Tam: ${item.tam}</p><button onclick="remover(${i})" style="background:none;border:none;color:#888;cursor:pointer;text-decoration:underline;font-size:11px;margin-top:5px;">Remover</button></div><p style="font-weight:700;">R$ ${item.preco.toFixed(2)}</p></div>`;
+                l.innerHTML += `<div class="item-no-carrinho">
+                    <div>
+                        <p style="font-weight:700;">${item.nome}</p>
+                        <p style="color:#666;font-size:0.9rem;">Tam: ${item.tam}</p>
+                        <button onclick="remover(${i})" style="background:none;border:none;color:#888;cursor:pointer;text-decoration:underline;font-size:11px;margin-top:5px;">Remover</button>
+                    </div>
+                    <p style="font-weight:700;">R$ ${item.preco.toFixed(2)}</p>
+                </div>`;
             });
-            c.innerText = carrinho.length; t.innerText = tot.toFixed(2).replace('.', ',');
+            c.innerText = carrinho.length; 
+            t.innerText = tot.toFixed(2).replace('.', ',');
         }
+
         function checkoutWhats() {
             if(carrinho.length === 0) return;
-            let m = "Salve! Pedido Sem Maldade:%0A%0A"; carrinho.forEach(i => m += `• ${i.nome} (${i.tam})%0A`);
+            let m = "Salve! Pedido Sem Maldade:%0A%0A"; 
+            carrinho.forEach(i => m += `• ${i.nome} (${i.tam})%0A`);
             m += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
             window.open(`https://wa.me/5511989636387?text=${m}`);
         }
+
         function checkoutInsta() {
             if(carrinho.length === 0) return;
-            let t = "Salve! Pedido Sem Maldade:\n\n"; carrinho.forEach(i => t += `• ${i.nome} (${i.tam})\n`);
+            let t = "Salve! Pedido Sem Maldade:\n\n"; 
+            carrinho.forEach(i => t += `• ${i.nome} (${i.tam})\n`);
             t += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
-            navigator.clipboard.writeText(t).then(() => { alert("COPIADO! Cole na DM."); window.open("https://ig.me/m/sem.maldade_________"); });
+            navigator.clipboard.writeText(t).then(() => { 
+                alert("COPIADO! Cole na DM."); 
+                window.open("https://ig.me/m/sem.maldade_________"); 
+            });
         }
     </script>
 </body>
