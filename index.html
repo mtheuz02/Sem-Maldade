@@ -57,6 +57,10 @@
             border-bottom: 1px solid var(--branco); padding-bottom: 30px;
         }
         .vitrine { padding: 60px 5%; background: var(--preto); min-height: 80vh; }
+        
+        /* CORREÇÃO DO TÍTULO CENTRALIZADO */
+        .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; width: 100%; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
+        
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto; align-items: start; }
         
         .card-produto { background: var(--cinza-fundo); padding: 25px; border: 1px solid var(--cinza-borda); transition: 0.3s; cursor: pointer; }
@@ -65,7 +69,7 @@
         .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .card-produto:hover .img-container img { transform: scale(1.1); }
 
-        /* --- MODAL DE PRODUTO (ESTILO CENTAURO) --- */
+        /* --- MODAL DE PRODUTO --- */
         #modal-produto {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 10000; 
@@ -84,7 +88,7 @@
         
         .desc-tecnica { margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; color: #ccc; line-height: 1.6; }
         
-        /* TABELA DE MEDIDAS (Botão e Tabela) */
+        /* TABELA DE MEDIDAS */
         .btn-tabela { background: transparent; border: none; color: #888; text-decoration: underline; cursor: pointer; margin-top: 10px; font-size: 0.85rem; text-align: left; }
         .tabela-medidas { display: none; width: 100%; margin-top: 15px; font-size: 0.8rem; border-collapse: collapse; text-align: center; color: #ccc; }
         .tabela-medidas th { border-bottom: 1px solid #555; padding: 5px; color: #fff; }
@@ -103,11 +107,32 @@
         #carrinho-lateral { position: fixed; top: 0; right: -500px; width: 100%; max-width: 450px; height: 100%; background: #000; z-index: 15000; transition: 0.5s; padding: 40px; border-left: 1px solid var(--cinza-borda); display: flex; flex-direction: column; }
         #carrinho-lateral.aberto { right: 0; }
 
-        /* FOOTER & SOCIAIS */
+        /* FOOTER */
         footer { padding: 40px 5%; text-align: center; border-top: 1px solid var(--cinza-borda); color: #666; font-size: 0.8rem; margin-top: 50px; }
-        .sociais-fixos { position: fixed; bottom: 30px; left: 30px; flex-direction: column; gap: 15px; z-index: 998; }
-        .social-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background: #fff; transition: 0.3s; }
-        .social-icon:hover { transform: scale(1.1); }
+        
+        /* BOTÕES SOCIAIS REFORMULADOS */
+        .sociais-fixos { 
+            position: fixed; bottom: 30px; left: 30px; 
+            display: flex; flex-direction: column; gap: 15px; 
+            z-index: 998; 
+        }
+        .social-icon { 
+            width: 50px; height: 50px; 
+            border-radius: 50%; 
+            display: flex; justify-content: center; align-items: center; 
+            background: #fff; /* Fundo branco padrão */
+            transition: 0.4s ease; 
+            border: 2px solid #fff;
+            filter: grayscale(100%); /* Começa Preto e Branco */
+        }
+        .social-icon img { width: 28px; height: 28px; }
+        
+        /* EFEITO AO PASSAR O MOUSE */
+        .social-icon:hover { 
+            filter: grayscale(0%); /* Revela a cor original */
+            transform: scale(1.15); /* Aumenta um pouco */
+            border-color: transparent;
+        }
 
         @media (max-width: 768px) {
             .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
@@ -118,6 +143,7 @@
             .img-container { height: 180px; }
             .btn-compra { padding: 15px; font-size: 0.9rem; }
             .logo-nav { width: 80px; }
+            .social-icon { width: 45px; height: 45px; } /* Ajuste mobile */
         }
     </style>
 </head>
@@ -298,12 +324,10 @@
             // Esconde a tabela ao abrir
             document.getElementById('tabela-medidas').style.display = 'none';
 
-            // Configura os tamanhos (Bermuda vs Outros)
+            // Configura os tamanhos (AGORA PADRÃO P/M/G/GG PARA TUDO)
             const divSizes = document.getElementById('mod-sizes');
             divSizes.innerHTML = '';
-            
-            let tamanhos = ['P', 'M', 'G', 'GG'];
-            if(nome.includes('Bermuda')) tamanhos = ['38', '40', '42', '44'];
+            const tamanhos = ['P', 'M', 'G', 'GG'];
 
             tamanhos.forEach(tam => {
                 const btn = document.createElement('button');
