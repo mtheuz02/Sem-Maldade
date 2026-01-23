@@ -13,43 +13,66 @@
             --branco: #ffffff; 
             --cinza-fundo: #0f0f0f; 
             --cinza-borda: #333333;
+            --insta: #e1306c; 
             --whats: #25d366; 
-            --insta: #e1306c;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--preto); color: var(--branco); overflow-x: hidden; line-height: 1.6; }
         
-        /* BLOQUEIO INICIAL: ESCONDE TUDO */
-        header, section, main, footer, .sociais-fixos, #agradecimento { display: none; }
-
         .fonte-street { font-family: 'Inter', sans-serif !important; text-transform: uppercase; font-weight: 900; letter-spacing: -1px; }
 
         @keyframes girar3d { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
 
+        /* --- BLINDAGEM: ESCONDE O SITE INICIALMENTE --- */
+        header, .hero, .vitrine, footer, .sociais-fixos { display: none; }
+
         /* TELA DE BLOQUEIO */
         #tela-bloqueio { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #000; z-index: 999999; display: flex; flex-direction: column; 
+            background: #000; z-index: 10000; display: flex; flex-direction: column; 
             justify-content: center; align-items: center; transition: 0.8s ease-in-out;
         }
         .logo-bloqueio { width: 250px; animation: girar3d 6s linear infinite; transform-style: preserve-3d; margin-bottom: 40px; }
         .input-acesso { padding: 20px; text-align: center; border: 2px solid var(--branco); width: 320px; background: transparent; color: white; font-size: 1.2rem; font-weight: 700; outline: none; margin-bottom: 20px; text-transform: uppercase; }
         .btn-acesso { background: var(--branco); color: #000; padding: 20px 80px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; transition: 0.3s; }
 
+        /* MODAL AGRADECIMENTO */
+        #agradecimento {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 20000; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+        }
+
         /* HEADER */
         header { 
             padding: 20px 5%; background: rgba(5, 5, 5, 0.95); 
-            border-bottom: 1px solid var(--cinza-borda); 
+            border-bottom: 1px solid var(--cinza-borda); display: flex; 
             justify-content: space-between; align-items: center; 
             position: sticky; top: 0; z-index: 999; backdrop-filter: blur(10px);
         }
-        .search-box { position: relative; display: flex; align-items: center; width: 200px; }
-        .search-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid #ffffff; color: #ffffff; padding: 8px 0; outline: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; }
-        .logo-nav { width: 120px; animation: girar3d 6s linear infinite; transform-style: preserve-3d; }
 
-        /* VITRINE CORRIGIDA */
-        .vitrine { padding: 60px 5%; background: var(--preto); min-height: 80vh; }
+        .search-box { position: relative; display: flex; align-items: center; width: 200px; }
+        .search-input { width: 100%; background: transparent; border: none; border-bottom: 2px solid #ffffff; color: #ffffff; padding: 8px 0; outline: none; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .search-input::placeholder { color: rgba(255, 255, 255, 0.8); font-weight: 700; }
+        .search-icon { position: absolute; right: 0; pointer-events: none; color: #ffffff; }
+
+        .logo-nav { width: 120px; animation: girar3d 6s linear infinite; transform-style: preserve-3d; }
+        .cart-trigger { cursor: pointer; position: relative; transition: 0.3s; color: var(--branco); display: flex; align-items: center; width: 200px; justify-content: flex-end; }
+        .cart-badge { position: absolute; top: -5px; right: -10px; background: var(--branco); color: #000; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; }
+
+        /* HERO */
+        .hero { 
+            height: 70vh; display: flex; align-items: flex-end; justify-content: center; 
+            text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/15% no-repeat fixed;
+            border-bottom: 1px solid var(--branco); padding-bottom: 30px;
+        }
+        .hero h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); color: var(--branco); letter-spacing: 2px; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+
+        /* VITRINE */
+        .vitrine { padding: 60px 5% 60px 5%; background: var(--preto); min-height: 80vh; }
+        .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
+        
         .grid-produtos { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
@@ -58,41 +81,69 @@
             margin: 0 auto; 
             align-items: start;
         }
-        .card-produto { background: var(--cinza-fundo); padding: 30px; border: 1px solid var(--cinza-borda); transition: 0.3s; height: 100%; }
-        .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; overflow: hidden; cursor: zoom-in; display: flex; align-items: center; justify-content: center; }
+
+        .card-produto { background: var(--cinza-fundo); padding: 30px; border: 1px solid var(--cinza-borda); transition: 0.3s; position: relative; overflow: hidden; height: 100%; }
+        .card-produto:hover { border-color: var(--branco); }
+        
+        .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: zoom-in; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .card-produto:hover .img-container img { transform: scale(1.1); }
 
-        /* BOTÕES E TAMANHOS */
         .sizes-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; }
-        .size-btn { border: 1px solid #444; background: transparent; color: #888; width: 50px; height: 50px; cursor: pointer; }
+        .size-btn { border: 1px solid #444; background: transparent; color: #888; width: 50px; height: 50px; cursor: pointer; font-weight: 400; transition: 0.2s; font-size: 0.9rem; }
+        .size-btn:hover { border-color: var(--branco); color: var(--branco); }
         .size-btn.active { background: var(--branco); color: #000; border-color: var(--branco); font-weight: bold; }
-        .btn-compra { background: var(--branco); color: #000; border: none; padding: 20px; width: 100%; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+        .btn-compra { background: var(--branco); color: #000; border: none; padding: 20px; width: 100%; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-size: 1rem; }
 
-        /* MODAIS */
-        #modal-img, #agradecimento {
-            display: none; position: fixed; z-index: 1000000; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(5px); justify-content: center; align-items: center;
+        /* MODAL DE IMAGEM (ZOOM) */
+        #modal-img {
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); justify-content: center; align-items: center;
         }
-        #agradecimento h2 { font-size: 3rem; color: #fff; margin-bottom: 20px; text-align: center; }
+        #modal-img img { max-width: 90%; max-height: 90vh; border: 2px solid #333; }
+        .fechar-modal { position: absolute; top: 20px; right: 30px; font-size: 50px; color: white; cursor: pointer; font-weight: bold; }
 
         /* CARRINHO */
-        #carrinho-lateral { position: fixed; top: 0; right: -500px; width: 100%; max-width: 480px; height: 100%; background: #000; z-index: 10000; transition: 0.6s; padding: 50px 35px; border-left: 1px solid var(--cinza-borda); display: flex; flex-direction: column; }
+        #carrinho-lateral { position: fixed; top: 0; right: -500px; width: 100%; max-width: 480px; height: 100%; background: #000; z-index: 1001; transition: 0.6s cubic-bezier(0.77, 0, 0.175, 1); padding: 50px 35px; display: flex; flex-direction: column; border-left: 1px solid var(--cinza-borda); }
         #carrinho-lateral.aberto { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--branco); padding-bottom: 20px; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; margin-bottom: 30px; }
+        .item-no-carrinho { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #222; }
+        .checkout-btn { padding: 20px; width: 100%; border: none; font-weight: 800; text-transform: uppercase; cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; }
+        .btn-whats { background: var(--whats); color: #fff; }
+        .btn-insta { background: var(--insta); color: #fff; }
+
+        /* FOOTER */
+        footer { padding: 40px 5%; text-align: center; border-top: 1px solid var(--cinza-borda); background: var(--preto); color: #666; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
 
         /* SOCIAIS */
-        .sociais-fixos { position: fixed; bottom: 40px; left: 40px; flex-direction: column; gap: 20px; z-index: 998; }
-        .social-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; background: #fff; }
+        .sociais-fixos { position: fixed; bottom: 40px; left: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 998; }
+        .social-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.6); filter: grayscale(100%); }
+        .social-icon:hover { filter: grayscale(0%); transform: scale(1.1); }
+        .social-icon img { width: 30px; }
 
         @media (max-width: 768px) {
+            header { padding: 15px 3%; }
+            .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/40% no-repeat fixed; padding-bottom: 20px; }
+            .hero h1 { font-size: 1.1rem; letter-spacing: 1px; }
+            #carrinho-lateral { max-width: 100%; }
             .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
-            .img-container { height: 180px; }
-            .size-btn { width: 35px; height: 35px; font-size: 0.7rem; }
-            .btn-compra { font-size: 0.8rem; padding: 15px; }
+            .card-produto { padding: 15px; }
+            .img-container { height: 180px; margin-bottom: 15px; }
+            .nome-prod { font-size: 0.95rem !important; min-height: 40px; }
+            .card-produto p { font-size: 1rem !important; }
+            .sizes-container { gap: 5px; margin: 15px 0; }
+            .size-btn { width: 32px; height: 32px; font-size: 0.7rem; }
+            .btn-compra { padding: 15px 5px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
+
+    <div id="modal-img">
+        <span class="fechar-modal" onclick="fecharZoom()">&times;</span>
+        <img id="img-zoom" src="" alt="Zoom">
+    </div>
 
     <div id="tela-bloqueio">
         <img src="img/logo.png" class="logo-bloqueio" alt="Logo">
@@ -101,154 +152,275 @@
         <button onclick="validaAcesso()" class="btn-acesso">Desbloquear</button>
     </div>
 
-    <div id="modal-img" onclick="this.style.display='none'">
-        <img id="img-zoom" src="" style="max-width: 90%; max-height: 90vh;">
-    </div>
-
     <div id="agradecimento">
-        <div style="text-align: center;">
-            <h2 class="fonte-street">VALEU PELA CONFIANÇA!</h2>
-            <p style="margin-bottom: 30px;">Seu pedido foi gerado. Finalize agora no WhatsApp ou Instagram.</p>
-            <button class="btn-acesso" onclick="location.reload()">VOLTAR À LOJA</button>
-        </div>
+        <h2 class="fonte-street" style="color: #fff; font-size: 2.5rem; margin-bottom: 20px;">VALEU PELA CONFIANÇA!</h2>
+        <p style="color: #ccc; margin-bottom: 30px; font-size: 1.2rem;">Seu pedido foi gerado.</p>
+        <button class="btn-acesso" onclick="location.reload()">VOLTAR PARA LOJA</button>
     </div>
 
-    <header id="header-site">
+    <header class="conteudo-site">
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="BUSCAR..." onkeyup="filtrarProdutos()">
+            <input type="text" id="campo-busca" class="search-input" placeholder="BUSCAR..." onkeyup="filtrarProdutos()">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
         <img src="img/logo.png" class="logo-nav" alt="Logo">
-        <div style="cursor:pointer;" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+        <div class="cart-trigger" onclick="toggleCart()">
+            <span style="font-size: 26px;">🛒</span>
+            <div class="cart-badge" id="cart-count">0</div>
+        </div>
     </header>
 
-    <main class="vitrine" id="main-site">
-        <h2 class="fonte-street" style="text-align: center; font-size: 3rem; margin-bottom: 50px;">New Drop</h2>
-        <div class="grid-produtos">
+    <section class="hero conteudo-site">
+        <h1 class="fonte-street">VIVA SEM MALDADE</h1>
+    </section>
+
+    <main class="vitrine conteudo-site">
+        <h2 class="fonte-street titulo-secao">New Drop</h2>
+        <div class="grid-produtos" id="grade-produtos">
             
             <div class="card-produto">
-                <div class="img-container" onclick="abrirZoom(this)"><img src="img/moletomvermelho.png"></div>
-                <h3 class="nome-prod fonte-street">Moletom Red Blood</h3>
-                <p>R$ 159,00</p>
-                <div class="sizes-container" id="p1">
-                    <button class="size-btn" onclick="selTam(this,'P','p1')">P</button>
-                    <button class="size-btn" onclick="selTam(this,'M','p1')">M</button>
-                    <button class="size-btn" onclick="selTam(this,'G','p1')">G</button>
-                    <button class="size-btn" onclick="selTam(this,'GG','p1')">GG</button>
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/moletomvermelho.png" alt="Moletom Vermelho">
                 </div>
-                <button class="btn-compra" onclick="add('Moletom Red Blood', 159, 'p1')">Comprar</button>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Red Blood</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 159,00</p>
+                <div class="sizes-container" id="sizes-p1">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p1')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p1')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p1')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p1')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Moletom Red Blood', 159.00, 'p1')">Comprar</button>
             </div>
 
             <div class="card-produto">
-                <div class="img-container" onclick="abrirZoom(this)"><img src="img/moletompreto.png"></div>
-                <h3 class="nome-prod fonte-street">Moletom Street Black</h3>
-                <p>R$ 159,00</p>
-                <div class="sizes-container" id="p2">
-                    <button class="size-btn" onclick="selTam(this,'P','p2')">P</button>
-                    <button class="size-btn" onclick="selTam(this,'M','p2')">M</button>
-                    <button class="size-btn" onclick="selTam(this,'G','p2')">G</button>
-                    <button class="size-btn" onclick="selTam(this,'GG','p2')">GG</button>
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/moletompreto.png" alt="Moletom Preto">
                 </div>
-                <button class="btn-compra" onclick="add('Moletom Street Black', 159, 'p2')">Comprar</button>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Black</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 159,00</p>
+                <div class="sizes-container" id="sizes-p2">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p2')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p2')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p2')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p2')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Moletom Street Black', 159.00, 'p2')">Comprar</button>
             </div>
 
             <div class="card-produto">
-                <div class="img-container" onclick="abrirZoom(this)"><img src="img/bermudapreta.png"></div>
-                <h3 class="nome-prod fonte-street">Bermuda Sem Maldade</h3>
-                <p>R$ 89,00</p>
-                <div class="sizes-container" id="p3">
-                    <button class="size-btn" onclick="selTam(this,'P','p3')">P</button>
-                    <button class="size-btn" onclick="selTam(this,'M','p3')">M</button>
-                    <button class="size-btn" onclick="selTam(this,'G','p3')">G</button>
-                    <button class="size-btn" onclick="selTam(this,'GG','p3')">GG</button>
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/camisa100maldade.png" alt="Camisa 100 Maldade">
                 </div>
-                <button class="btn-compra" onclick="add('Bermuda Sem Maldade', 89, 'p3')">Comprar</button>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camisa 100 Maldade</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 100,00</p>
+                <div class="sizes-container" id="sizes-p3">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p3')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p3')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p3')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p3')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Camisa 100 Maldade', 100.00, 'p3')">Comprar</button>
             </div>
 
+            <div class="card-produto">
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/polopreta.png" alt="Polo Preta">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Polo Sem Maldade</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 100,00</p>
+                <div class="sizes-container" id="sizes-p4">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p4')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p4')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p4')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p4')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Polo Sem Maldade', 100.00, 'p4')">Comprar</button>
+            </div>
+
+            <div class="card-produto">
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/bermudapreta.png" alt="Bermuda Sem Maldade">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Bermuda Sem Maldade</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 89,00</p>
+                <div class="sizes-container" id="sizes-p5">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p5')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p5')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p5')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p5')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Bermuda Sem Maldade', 89.00, 'p5')">Comprar</button>
+            </div>
+
+            <div class="card-produto">
+                <div class="img-container" onclick="abrirZoom(this)">
+                    <img src="img/jersey.png" alt="Timão Sem Maldade">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Timão Sem Maldade</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 230,00</p>
+                <div class="sizes-container" id="sizes-p6">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p6')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p6')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p6')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p6')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Timão Sem Maldade', 230.00, 'p6')">Comprar</button>
+            </div>
+
+            <div id="msg-erro-busca" style="grid-column: 1/-1; text-align: center; display: none;">NENHUM PRODUTO ENCONTRADO.</div>
         </div>
     </main>
 
-    <footer id="footer-site">TODOS OS DIREITOS RESERVADOS, SEM MALDADE 2026</footer>
+    <footer class="conteudo-site">TODOS OS DIREITOS RESERVADOS, SEM MALDADE 2026</footer>
 
     <div id="carrinho-lateral">
-        <h2 class="fonte-street">Carrinho</h2>
-        <div id="cart-list" style="flex-grow: 1; margin-top: 20px; overflow-y: auto;"></div>
-        <div style="border-top: 1px solid #333; padding-top: 20px;">
-            <p style="font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">TOTAL: R$ <span id="cart-total">0,00</span></p>
-            <button class="btn-compra" style="background:var(--whats); color:white; margin-bottom: 10px;" onclick="checkout('whats')">Finalizar WhatsApp</button>
-            <button class="btn-compra" style="background:var(--insta); color:white;" onclick="checkout('insta')">Finalizar Instagram</button>
+        <div class="cart-header">
+            <h2 class="fonte-street" style="color: var(--branco); font-size: 1.8rem;">Carrinho</h2>
+            <span style="cursor:pointer; font-size: 40px;" onclick="toggleCart()">×</span>
+        </div>
+        <div class="cart-items-list" id="cart-list"></div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 900; margin-bottom: 30px; border-top: 1px solid #333; padding-top: 20px;">
+                <span>TOTAL:</span>
+                <span>R$ <span id="cart-total">0,00</span></span>
+            </div>
+            <button class="checkout-btn btn-whats" onclick="checkoutWhats()">Finalizar WhatsApp</button>
+            <button class="checkout-btn btn-insta" onclick="checkoutInsta()">Finalizar Instagram</button>
         </div>
     </div>
 
-    <div class="sociais-fixos" id="sociais-site">
-        <a href="https://wa.me/5511989636387" target="_blank" class="social-icon" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="30"></a>
+    <div class="sociais-fixos">
+        <a href="https://instagram.com/sem.maldade_________" target="_blank" class="social-icon" style="background: #fff;"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram"></a>
+        <a href="https://wa.me/5511989636387" target="_blank" class="social-icon" style="background: var(--whats);"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"></a>
     </div>
 
     <script>
-        let cart = []; let escolhas = {};
+        let carrinho = []; 
+        let escolhas = {};
+
+        // ZOOM FUNCTIONS
+        function abrirZoom(container) {
+            const modal = document.getElementById('modal-img');
+            const imgZoom = document.getElementById('img-zoom');
+            const originalImg = container.querySelector('img').src;
+            imgZoom.src = originalImg;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharZoom() {
+            document.getElementById('modal-img').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function filtrarProdutos() {
+            const termo = document.getElementById('campo-busca').value.toLowerCase();
+            const produtos = document.querySelectorAll('.card-produto');
+            const msgErro = document.getElementById('msg-erro-busca');
+            let encontrouAlgo = false;
+            produtos.forEach(prod => {
+                const titulo = prod.querySelector('.nome-prod').innerText.toLowerCase();
+                if(titulo.includes(termo)) { prod.style.display = 'block'; encontrouAlgo = true; } 
+                else { prod.style.display = 'none'; }
+            });
+            msgErro.style.display = encontrouAlgo ? 'none' : 'block';
+        }
 
         function handleEnter(e) { if(e.key === 'Enter') validaAcesso(); }
 
         function validaAcesso() {
             const pass = document.getElementById('pass-field').value.toUpperCase().trim();
             if(pass === "SEMMALDADE2026" || pass === "123") {
-                document.getElementById('tela-bloqueio').style.display = 'none';
-                document.getElementById('header-site').style.display = 'flex';
-                document.getElementById('main-site').style.display = 'block';
-                document.getElementById('footer-site').style.display = 'block';
-                document.getElementById('sociais-site').style.display = 'flex';
-                document.body.style.overflow = 'auto';
+                const t = document.getElementById('tela-bloqueio'); 
+                t.style.opacity = '0';
+                
+                // REVELAR O SITE
+                setTimeout(() => { 
+                    t.style.display = 'none'; 
+                    document.body.style.overflow = 'auto'; 
+                    
+                    document.querySelector('header').style.display = 'flex';
+                    document.querySelector('.hero').style.display = 'flex';
+                    document.querySelector('.vitrine').style.display = 'block';
+                    document.querySelector('footer').style.display = 'block';
+                    document.querySelector('.sociais-fixos').style.display = 'flex';
+                }, 800);
+
             } else { alert("SENHA INCORRETA"); }
-        }
-
-        function abrirZoom(c) {
-            document.getElementById('img-zoom').src = c.querySelector('img').src;
-            document.getElementById('modal-img').style.display = 'flex';
-        }
-
-        function selTam(btn, tam, id) {
-            btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active'); escolhas[id] = tam;
-        }
-
-        function add(nome, preco, id) {
-            if(!escolhas[id]) return alert("Selecione um tamanho!");
-            cart.push({nome, preco, tam: escolhas[id]});
-            renderCart(); toggleCart();
         }
 
         function toggleCart() { document.getElementById('carrinho-lateral').classList.toggle('aberto'); }
 
-        function renderCart() {
-            const list = document.getElementById('cart-list');
-            let total = 0; list.innerHTML = "";
-            cart.forEach(item => {
-                total += item.preco;
-                list.innerHTML += `<div style="margin-bottom:15px; border-bottom:1px solid #222; padding-bottom:5px;">
-                    <p><b>${item.nome}</b> (${item.tam})</p>
-                    <p>R$ ${item.preco.toFixed(2)}</p>
+        function selecionarTamanho(btn, tam, prodId) {
+            btn.parentElement.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active'); 
+            escolhas[prodId] = tam;
+        }
+
+        function adicionar(nome, preco, prodId) {
+            const tam = escolhas[prodId]; 
+            if(!tam) { alert("Selecione um tamanho."); return; }
+            carrinho.push({ nome, preco, tam }); 
+            atualizaCarrinho();
+            if(!document.getElementById('carrinho-lateral').classList.contains('aberto')) toggleCart();
+        }
+
+        function remover(i) { 
+            carrinho.splice(i, 1); 
+            atualizaCarrinho(); 
+        }
+
+        function atualizaCarrinho() {
+            const l = document.getElementById('cart-list'); 
+            const c = document.getElementById('cart-count'); 
+            const t = document.getElementById('cart-total');
+            l.innerHTML = ""; 
+            let tot = 0;
+            carrinho.forEach((item, i) => {
+                tot += item.preco;
+                l.innerHTML += `<div class="item-no-carrinho">
+                    <div>
+                        <p style="font-weight:700;">${item.nome}</p>
+                        <p style="color:#666;font-size:0.9rem;">Tam: ${item.tam}</p>
+                        <button onclick="remover(${i})" style="background:none;border:none;color:#888;cursor:pointer;text-decoration:underline;font-size:11px;margin-top:5px;">Remover</button>
+                    </div>
+                    <p style="font-weight:700;">R$ ${item.preco.toFixed(2)}</p>
                 </div>`;
             });
-            document.getElementById('cart-count').innerText = cart.length;
-            document.getElementById('cart-total').innerText = total.toFixed(2).replace('.', ',');
+            c.innerText = carrinho.length; 
+            t.innerText = tot.toFixed(2).replace('.', ',');
         }
 
-        function checkout(tipo) {
-            if(cart.length === 0) return;
+        // MOSTRAR TELA DE AGRADECIMENTO E DEPOIS IR P/ WHATS/INSTA
+        function mostrarAgradecimento(callback) {
+            document.getElementById('carrinho-lateral').classList.remove('aberto');
             document.getElementById('agradecimento').style.display = 'flex';
-            let m = "Salve! Pedido Sem Maldade:%0A";
-            cart.forEach(i => m += `- ${i.nome} (${i.tam})%0A`);
-            
-            setTimeout(() => {
-                if(tipo === 'whats') window.open(`https://wa.me/5511989636387?text=${m}`);
-                else window.open("https://ig.me/m/sem.maldade_________");
-            }, 2000);
+            setTimeout(callback, 1500); // Espera 1.5 seg e abre o link
         }
 
-        function filtrarProdutos() {
-            const termo = document.querySelector('.search-input').value.toLowerCase();
-            document.querySelectorAll('.card-produto').forEach(p => {
-                const titulo = p.querySelector('h3').innerText.toLowerCase();
-                p.style.display = titulo.includes(termo) ? 'block' : 'none';
+        function checkoutWhats() {
+            if(carrinho.length === 0) return;
+            let m = "Salve! Pedido Sem Maldade:%0A%0A"; 
+            carrinho.forEach(i => m += `• ${i.nome} (${i.tam})%0A`);
+            m += `%0A*Total: R$ ${document.getElementById('cart-total').innerText}*`;
+            
+            mostrarAgradecimento(() => {
+                window.open(`https://wa.me/5511989636387?text=${m}`);
+            });
+        }
+
+        function checkoutInsta() {
+            if(carrinho.length === 0) return;
+            let t = "Salve! Pedido Sem Maldade:\n\n"; 
+            carrinho.forEach(i => t += `• ${i.nome} (${i.tam})\n`);
+            t += `\nTotal: R$ ${document.getElementById('cart-total').innerText}`;
+            
+            navigator.clipboard.writeText(t).then(() => { 
+                mostrarAgradecimento(() => {
+                    alert("COPIADO! Cole na DM."); 
+                    window.open("https://ig.me/m/sem.maldade_________"); 
+                });
             });
         }
     </script>
