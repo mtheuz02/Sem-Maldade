@@ -51,7 +51,7 @@
         .cart-trigger { cursor: pointer; position: relative; transition: 0.3s; color: var(--branco); display: flex; align-items: center; width: 200px; justify-content: flex-end; }
         .cart-badge { position: absolute; top: -5px; right: -10px; background: var(--branco); color: #000; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; }
 
-        /* HERO (Desktop) */
+        /* HERO */
         .hero { 
             height: 70vh; display: flex; align-items: flex-end; justify-content: center; 
             text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/15% no-repeat fixed;
@@ -66,7 +66,11 @@
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; max-width: 1300px; margin: 0 auto; }
         .card-produto { background: var(--cinza-fundo); padding: 30px; border: 1px solid var(--cinza-borda); transition: 0.3s; position: relative; overflow: hidden; }
         .card-produto:hover { border-color: var(--branco); }
-        .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; color: #555; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; }
+        
+        /* Ajuste para imagens reais */
+        .img-container { width: 100%; height: 400px; background: #151515; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card-produto:hover .img-container img { transform: scale(1.1); }
 
         .sizes-container { display: flex; justify-content: center; gap: 10px; margin: 25px 0; }
         .size-btn { border: 1px solid #444; background: transparent; color: #888; width: 50px; height: 50px; cursor: pointer; font-weight: 400; transition: 0.2s; font-size: 0.9rem; }
@@ -93,22 +97,18 @@
         /* --- AJUSTES MOBILE --- */
         @media (max-width: 768px) {
             header { padding: 15px 3%; }
-            
-            /* HERO MOBILE: Imagem de fundo maior (40%) */
             .hero { 
                 height: 50vh; 
                 background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('img/logo.png') center/40% no-repeat fixed;
                 padding-bottom: 20px; 
             }
             .hero h1 { font-size: 1.1rem; letter-spacing: 1px; }
-
             #carrinho-lateral { max-width: 100%; }
             .search-box { width: 110px; }
             .cart-trigger { width: 110px; }
-
             .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
             .card-produto { padding: 15px; }
-            .img-container { height: 180px; font-size: 0.7rem; margin-bottom: 15px; }
+            .img-container { height: 180px; margin-bottom: 15px; }
             .nome-prod { font-size: 0.95rem !important; min-height: 40px; }
             .card-produto p { font-size: 1rem !important; }
             .sizes-container { gap: 5px; margin: 15px 0; }
@@ -144,9 +144,12 @@
     <main class="vitrine">
         <h2 class="fonte-street titulo-secao">New Drop</h2>
         <div class="grid-produtos" id="grade-produtos">
+            
             <div class="card-produto">
-                <div class="img-container">FOTO EM BREVE</div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camiseta Classic Logo</h3>
+                <div class="img-container">
+                    <img src="img/camisa100maldade.png" alt="Camisa 100 Maldade">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Camisa 100 Maldade</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 119,90</p>
                 <div class="sizes-container" id="sizes-p1">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p1')">P</button>
@@ -154,11 +157,14 @@
                     <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p1')">G</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p1')">GG</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Camiseta Classic', 119.90, 'p1')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Camisa 100 Maldade', 119.90, 'p1')">Comprar</button>
             </div>
+
             <div class="card-produto">
-                <div class="img-container">FOTO EM BREVE</div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Heavy</h3>
+                <div class="img-container">
+                    <img src="img/moletompreto.png" alt="Moletom Preto">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Street Black</h3>
                 <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 249,90</p>
                 <div class="sizes-container" id="sizes-p2">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p2')">P</button>
@@ -166,41 +172,69 @@
                     <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p2')">G</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p2')">GG</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Moletom Street', 249.90, 'p2')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Moletom Street Black', 249.90, 'p2')">Comprar</button>
             </div>
+
             <div class="card-produto">
-                <div class="img-container">FOTO EM BREVE</div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Calça Cargo Black</h3>
-                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 189,90</p>
+                <div class="img-container">
+                    <img src="img/polopreta.png" alt="Polo Preta">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Polo Sem Maldade</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 139,90</p>
                 <div class="sizes-container" id="sizes-p3">
-                    <button class="size-btn" onclick="selecionarTamanho(this, '38', 'p3')">38</button>
-                    <button class="size-btn" onclick="selecionarTamanho(this, '40', 'p3')">40</button>
-                    <button class="size-btn" onclick="selecionarTamanho(this, '42', 'p3')">42</button>
-                    <button class="size-btn" onclick="selecionarTamanho(this, '44', 'p3')">44</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p3')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p3')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p3')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p3')">GG</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Calça Cargo Black', 189.90, 'p3')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Polo Sem Maldade', 139.90, 'p3')">Comprar</button>
             </div>
+
             <div class="card-produto">
-                <div class="img-container">FOTO EM BREVE</div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Boné 5-Panel</h3>
-                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 89,90</p>
+                <div class="img-container">
+                    <img src="img/bermudapreta.png" alt="Bermuda Preta">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Bermuda Street Cargo</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 99,90</p>
                 <div class="sizes-container" id="sizes-p4">
-                    <button class="size-btn" onclick="selecionarTamanho(this, 'U', 'p4')">U</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, '38', 'p4')">38</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, '40', 'p4')">40</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, '42', 'p4')">42</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, '44', 'p4')">44</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Boné 5-Panel', 89.90, 'p4')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Bermuda Cargo', 99.90, 'p4')">Comprar</button>
             </div>
+
             <div class="card-produto">
-                <div class="img-container">FOTO EM BREVE</div>
-                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Jaqueta Windbreaker</h3>
-                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 329,90</p>
+                <div class="img-container">
+                    <img src="img/corinthianslarnja.png" alt="Camisa Corinthians Laranja">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Jersey Laranja Ed.</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 159,90</p>
                 <div class="sizes-container" id="sizes-p5">
                     <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p5')">P</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p5')">M</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p5')">G</button>
                     <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p5')">GG</button>
                 </div>
-                <button class="btn-compra" onclick="adicionar('Jaqueta Windbreaker', 329.90, 'p5')">Comprar</button>
+                <button class="btn-compra" onclick="adicionar('Jersey Laranja', 159.90, 'p5')">Comprar</button>
             </div>
+
+            <div class="card-produto">
+                <div class="img-container">
+                    <img src="img/moletomvermelho.png" alt="Moletom Vermelho">
+                </div>
+                <h3 class="nome-prod" style="font-size: 1.4rem; margin-bottom: 10px; font-weight: 700;">Moletom Red Blood</h3>
+                <p style="color: var(--branco); font-size: 1.2rem; font-weight: 900;">R$ 249,90</p>
+                <div class="sizes-container" id="sizes-p6">
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'P', 'p6')">P</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'M', 'p6')">M</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'G', 'p6')">G</button>
+                    <button class="size-btn" onclick="selecionarTamanho(this, 'GG', 'p6')">GG</button>
+                </div>
+                <button class="btn-compra" onclick="adicionar('Moletom Vermelho', 249.90, 'p6')">Comprar</button>
+            </div>
+
             <div id="msg-erro-busca">NENHUM PRODUTO ENCONTRADO.</div>
         </div>
     </main>
