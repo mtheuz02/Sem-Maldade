@@ -57,7 +57,7 @@
             border-bottom: 1px solid var(--branco); padding-bottom: 30px;
         }
         .vitrine { padding: 60px 5%; background: var(--preto); min-height: 80vh; }
-        .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
+        .titulo-secao { font-size: 3rem; color: var(--branco); text-align: center; width: 100%; margin-bottom: 60px; font-weight: 900; letter-spacing: -2px; }
         
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; max-width: 1300px; margin: 0 auto; align-items: start; }
         
@@ -79,18 +79,25 @@
             width: 100%; max-width: 1100px; display: grid; grid-template-columns: 1.2fr 1fr;
             position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 0 50px rgba(255,255,255,0.1);
         }
-        .modal-esq { background: #050505; display: flex; align-items: center; justify-content: center; height: 600px; border-right: 1px solid #222; }
-        .modal-esq img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .modal-esq { background: #050505; display: flex; align-items: center; justify-content: center; height: 600px; border-right: 1px solid #222; overflow: hidden; cursor: zoom-in; }
+        .modal-esq img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s; }
+        .modal-esq img:hover { transform: scale(1.02); }
+        
         .modal-dir { padding: 40px; display: flex; flex-direction: column; height: 600px; overflow-y: auto; }
         
         .modal-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; z-index: 20; color: #fff; }
         
-        /* BOTÃO VOLTAR (MOBILE) - CORRIGIDO PARA PRETO */
-        .modal-voltar-mobile { display: none; position: absolute; top: 15px; left: 20px; background: transparent; border: none; color: #000; font-weight: 900; font-size: 1.1rem; cursor: pointer; z-index: 25; padding: 10px; border-radius: 5px; }
+        /* BOTÃO X (MOBILE) */
+        .modal-voltar-mobile { 
+            display: none; position: absolute; top: 10px; left: 15px; 
+            background: transparent; border: none; color: #000; 
+            font-weight: 900; font-size: 2rem; line-height: 1;
+            cursor: pointer; z-index: 25; padding: 5px; 
+        }
 
         .desc-tecnica { margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; color: #ccc; line-height: 1.6; }
         
-        /* TABELA DE MEDIDAS (Botão e Tabela) */
+        /* TABELA DE MEDIDAS */
         .btn-tabela { background: transparent; border: none; color: #888; text-decoration: underline; cursor: pointer; margin-top: 10px; font-size: 0.85rem; text-align: left; }
         .tabela-medidas { display: none; width: 100%; margin-top: 15px; font-size: 0.8rem; border-collapse: collapse; text-align: center; color: #ccc; }
         .tabela-medidas th { border-bottom: 1px solid #555; padding: 5px; color: #fff; }
@@ -103,6 +110,13 @@
         .size-btn.active { background: var(--branco); color: #000; border-color: var(--branco); }
         .btn-compra { background: var(--branco); color: #000; border: none; padding: 20px; width: 100%; font-weight: 900; text-transform: uppercase; cursor: pointer; margin-top: 20px; letter-spacing: 1px; transition: 0.3s; }
         .btn-compra:hover { background: #ddd; }
+
+        /* MODAL DE ZOOM FULLSCREEN */
+        #modal-zoom-full {
+            display: none; position: fixed; z-index: 20000; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); justify-content: center; align-items: center; cursor: zoom-out;
+        }
+        #modal-zoom-full img { max-width: 95%; max-height: 95vh; object-fit: contain; }
 
         /* AGRADECIMENTO & CARRINHO */
         #agradecimento { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 20000; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
@@ -120,7 +134,7 @@
         @media (max-width: 768px) {
             .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
             .modal-content { grid-template-columns: 1fr; height: 100%; max-height: 100vh; overflow-y: scroll; display: block; }
-            .modal-esq { height: 350px; width: 100%; background: #fff; /* Fundo branco pra imagem mobile */ }
+            .modal-esq { height: 350px; width: 100%; background: #fff; position: relative; } /* Fundo branco pra imagem mobile */
             .modal-dir { padding: 20px; height: auto; }
             .card-produto { padding: 15px; }
             .img-container { height: 180px; }
@@ -128,9 +142,9 @@
             .logo-nav { width: 80px; }
             .social-icon { width: 45px; height: 45px; }
             
-            /* MOSTRAR BOTÃO VOLTAR PRETO NO MOBILE */
+            /* MOSTRAR BOTÃO X PRETO NO MOBILE */
             .modal-voltar-mobile { display: block; }
-            .modal-fechar { display: none; } /* Esconde o X e mostra o VOLTAR */
+            .modal-fechar { display: none; }
         }
     </style>
 </head>
@@ -143,12 +157,16 @@
         <button onclick="validaAcesso()" class="btn-acesso">Desbloquear</button>
     </div>
 
+    <div id="modal-zoom-full" onclick="this.style.display='none'">
+        <img id="img-zoom-full" src="" alt="Zoom Detalhado">
+    </div>
+
     <div id="modal-produto">
         <div class="modal-content">
-            <button class="modal-voltar-mobile" onclick="fecharModal()">← VOLTAR</button>
+            <button class="modal-voltar-mobile" onclick="fecharModal()">✕</button>
             <span class="modal-fechar" onclick="fecharModal()">&times;</span>
             
-            <div class="modal-esq">
+            <div class="modal-esq" onclick="abrirZoomFull()">
                 <img id="mod-img" src="" alt="Produto">
             </div>
             
@@ -340,6 +358,13 @@
         function fecharModal() {
             document.getElementById('modal-produto').style.display = 'none';
             document.body.style.overflow = 'auto';
+        }
+
+        // --- ZOOM DETALHADO (NOVO) ---
+        function abrirZoomFull() {
+            const imgSrc = document.getElementById('mod-img').src;
+            document.getElementById('img-zoom-full').src = imgSrc;
+            document.getElementById('modal-zoom-full').style.display = 'flex';
         }
 
         function toggleTabela() {
