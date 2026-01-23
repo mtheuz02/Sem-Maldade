@@ -85,8 +85,8 @@
         
         .modal-fechar { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; z-index: 20; color: #fff; }
         
-        /* BOTÃO VOLTAR (MOBILE) */
-        .modal-voltar-mobile { display: none; position: absolute; top: 15px; left: 20px; background: transparent; border: none; color: #fff; font-weight: 900; font-size: 1rem; cursor: pointer; z-index: 20; }
+        /* BOTÃO VOLTAR (MOBILE) - CORRIGIDO PARA PRETO */
+        .modal-voltar-mobile { display: none; position: absolute; top: 15px; left: 20px; background: transparent; border: none; color: #000; font-weight: 900; font-size: 1.1rem; cursor: pointer; z-index: 25; padding: 10px; border-radius: 5px; }
 
         .desc-tecnica { margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; font-size: 0.9rem; color: #ccc; line-height: 1.6; }
         
@@ -120,7 +120,7 @@
         @media (max-width: 768px) {
             .grid-produtos { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 10px; }
             .modal-content { grid-template-columns: 1fr; height: 100%; max-height: 100vh; overflow-y: scroll; display: block; }
-            .modal-esq { height: 350px; width: 100%; }
+            .modal-esq { height: 350px; width: 100%; background: #fff; /* Fundo branco pra imagem mobile */ }
             .modal-dir { padding: 20px; height: auto; }
             .card-produto { padding: 15px; }
             .img-container { height: 180px; }
@@ -128,7 +128,7 @@
             .logo-nav { width: 80px; }
             .social-icon { width: 45px; height: 45px; }
             
-            /* MOSTRAR BOTÃO VOLTAR NO MOBILE */
+            /* MOSTRAR BOTÃO VOLTAR PRETO NO MOBILE */
             .modal-voltar-mobile { display: block; }
             .modal-fechar { display: none; } /* Esconde o X e mostra o VOLTAR */
         }
